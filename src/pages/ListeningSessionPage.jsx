@@ -274,18 +274,7 @@ export default function ListeningSessionPage() {
             <span>First-Person Passage • Answer as the Character</span>
           </div>
 
-          <h1 style={{ fontSize: '1.75rem', marginBottom: '1rem' }}>{set.title}</h1>
-
-          {/* Voice Selector & Speed Controls before playing audio */}
-          <VoiceControlBar
-            voices={voices}
-            selectedVoice={selectedVoice}
-            onSelectVoice={setSelectedVoice}
-            rate={rate}
-            onChangeRate={setRate}
-            label="Passage Narrator Voice"
-            previewSample="Hello! This voice will narrate the listening comprehension passage."
-          />
+          <h1 style={{ fontSize: '1.75rem', marginBottom: '1.5rem' }}>{set.title}</h1>
 
           {/* Audio Listening Card (Passage text is hidden for listening comprehension practice) */}
           <div style={{

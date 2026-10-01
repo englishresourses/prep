@@ -287,17 +287,6 @@ export default function DialogSessionPage() {
             </div>
           </div>
 
-          {/* Voice Selector & Audio Settings for Conversation Partner */}
-          <VoiceControlBar
-            voices={voices}
-            selectedVoice={selectedVoice}
-            onSelectVoice={setSelectedVoice}
-            rate={rate}
-            onChangeRate={setRate}
-            label="Conversation Partner / Interviewer Voice"
-            previewSample="Hello! I will be your conversation partner for this scenario."
-          />
-
           <button
             onClick={handleStartRolePlay}
             className="btn btn-primary"
