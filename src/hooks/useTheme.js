@@ -4,8 +4,7 @@ import { getAppSettings, saveAppSettings } from '../services/storage';
 export function useTheme() {
   const [theme, setTheme] = useState(() => {
     const settings = getAppSettings();
-    if (settings.theme) return settings.theme;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    return settings?.theme || 'light';
   });
 
   useEffect(() => {

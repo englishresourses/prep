@@ -4,12 +4,13 @@ A 100% client-side, zero-backend voice practice web application designed for stu
 
 ## 🚀 Key Features
 
-- **Module 1: Listening Comprehension (30 Sets)**: First-person narrative passages read with SpeechSynthesis (TTS). The app automatically prompts questions and activates the microphone for spoken answers, evaluated with our JSON-driven rubric engine.
-- **Module 2: Situational Dialog (30 Role-Play Scenarios)**: Interactive turn-by-turn conversations simulating campus placements, job interviews, customer service, and daily campus life. Includes visual word-by-word diffs (**green** for matched words, **red** for missing/unspoken words).
+- **Module 1: Listening Comprehension (30 Sets)**: First-person narrative passages read with SpeechSynthesis (TTS). Select and test your narrator's voice before playing. The app automatically prompts questions and activates the microphone for spoken answers, evaluated with our JSON-driven rubric engine.
+- **Module 2: Situational Dialog (30 Role-Play Scenarios)**: Interactive turn-by-turn conversations simulating campus placements, job interviews, customer service, and daily campus life. Configure your conversation partner's voice and accent with test previews. Includes visual word-by-word diffs (**green** for matched words, **red** for missing/unspoken words).
+- **Customizable Voices & Speech Controls**: Choose from all available browser speech synthesis voices (English voices prioritized and tagged with 🗣️). Preview and test any voice before starting audio playback in both modules. Selected voice and speed (0.8x / 1.0x / 1.2x) persist automatically across the entire app.
 - **JSON-Driven Rubrics**: Scoring parameters, max marks, band descriptors, thresholds, and feedback tips are 100% configured via JSON (`src/data/rubrics/listening.json` and `src/data/rubrics/dialogs.json`).
-- **Resilient Web Speech Engine**: Prioritizes Indian English (`en-IN`) with fallbacks to `en-US`/`en-GB`. Includes 0.8x / 1.0x / 1.2x playback speed controls, passage replay caps (max 2 replays), live interim transcripts, and keyboard typing fallback.
+- **Resilient Web Speech Engine**: Prioritizes Indian English (`en-IN`) with fallbacks to `en-US`/`en-GB`. Includes playback speed controls, passage replay caps (max 2 replays), live interim transcripts, and keyboard typing fallback.
 - **Student Dashboard & Analytics**: Tracks calendar practice streak, average accuracy, completion metrics, and lists sets needing improvement (< 75%). All stored safely in browser `localStorage` with `try/catch` error protection.
-- **Mobile-First & Accessible**: Dark/light mode toggle, large touch targets (≥ 48px), and zero external backend or paid APIs.
+- **Default Light Theme & Accessibility**: Starts up in an accessible, high-contrast **Light Mode** by default with instant toggle to Dark Mode in the navbar. Features large touch targets (≥ 48px) and zero external backend or paid APIs.
 
 ---
 
@@ -96,9 +97,52 @@ Rubric validation rules (enforced on startup and in Vitest):
 
 ---
 
-## 🌐 Static Deployment Guide (Vercel / Netlify)
+## 🔊 Configurable Voices & Audio Playback
 
-Because the Web Speech API (specifically `SpeechRecognition`) requires a secure context, this app **must be served over HTTPS** in production.
+Students can customize the speech synthesis voice and narration speed across all modules to practice with diverse accents (e.g., US, UK, Indian English, natural voices):
+
+### 1. In Listening Comprehension (`/listening/:id`)
+- **Before Starting the Passage**: A dedicated **Voice Control Bar** appears directly above the audio card.
+- **Select Voice**: Pick from any speech synthesis voice installed in your browser. English voices are highlighted at the top with a `🗣️` badge.
+- **Test Voice**: Click **Test Voice** to hear a sample preview sentence before starting the passage.
+- **Speed**: Switch between `0.8x`, `1.0x`, and `1.2x` speeds.
+- **During Questions**: An inline compact voice switcher lets you switch narrator voices between questions.
+
+### 2. In Situational Dialogs (`/dialogs/:id`)
+- **Before Role-Play**: In the Scenario Briefing screen, choose your **Conversation Partner / Interviewer Voice** and test how the interviewer will sound.
+- **During Conversational Turns**: An inline voice switcher sits beside the **Replay Prompt Audio** button so you can switch the speaker's accent on the fly without interrupting your practice.
+
+### 3. In Audio Lab Diagnostics (`/speech-test`)
+- The Diagnostic lab detects all voices supported by your browser and hardware, enabling microphone input calibration and text-to-speech test playback.
+
+### 4. Automatic Persistence
+- Any voice selected in any module (or in `/speech-test`) is automatically remembered in browser `localStorage`. Next time you open any set, your preferred voice and speed are automatically restored.
+
+---
+
+## 🎨 Theme Customization (Default Light Mode)
+
+- **Default on Startup**: FluentPrep defaults to a clean, high-contrast **Light Theme** for readability during daytime study sessions.
+- **Instant Toggle**: Click the Sun/Moon toggle button in the navigation header to switch to **Dark Theme**.
+- **Zero-Flicker Boot**: An inline script in `index.html` loads your preferred theme before the page paints, preventing any theme flashes.
+
+---
+
+## 🌐 Static Deployment Guide
+
+Because the Web Speech API (`SpeechRecognition` & `SpeechSynthesis`) requires a secure context, this app **must be served over HTTPS** in production.
+
+### Deploy to GitHub Pages (Automated via GitHub Actions)
+1. Push your repository to GitHub:
+   ```bash
+   git push origin main
+   ```
+2. In your GitHub repository:
+   - Go to **Settings** > **Pages**.
+   - Under **Build and deployment** > **Source**, select **GitHub Actions**.
+3. The included workflow (`.github/workflows/node.js.yml`) automatically runs tests, builds the Vite app with base path `/prep/`, creates the SPA 404 fallback, and deploys the site.
+4. Your live app will be accessible at:
+   `https://<your-username>.github.io/prep/`
 
 ### Deploy to Vercel
 1. Run `npm run build` to verify the production bundle.
