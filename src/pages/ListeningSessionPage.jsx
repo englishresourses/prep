@@ -64,13 +64,18 @@ export default function ListeningSessionPage() {
     interimTranscript,
     combinedTranscript,
     audioLevel,
+    isPauseDetected,
     error: micError,
     confidence,
     timing,
     startListening,
     stopListening,
     resetTranscript
-  } = useSpeechRecognition({ defaultLang: 'en-US' });
+  } = useSpeechRecognition({
+    defaultLang: 'en-US',
+    autoStopOnPause: true,
+    pauseTimeoutMs: 1800
+  });
 
   // Stop all audio on unmount or route change
   useEffect(() => {
@@ -475,9 +480,11 @@ export default function ListeningSessionPage() {
                   fontWeight: 700,
                   textTransform: 'uppercase',
                   letterSpacing: '0.04em',
-                  color: isListening ? 'var(--primary)' : 'var(--text-muted)'
+                  color: isListening ? 'var(--primary)' : (isPauseDetected ? 'var(--success)' : 'var(--text-muted)')
                 }}>
-                  {isListening ? '🔴 Recording your answer... (Speak now)' : 'Your Spoken Answer:'}
+                  {isListening 
+                    ? '🔴 Listening... (Stops automatically when you finish speaking)' 
+                    : (isPauseDetected ? '✓ Finished Speaking (Pause Detected)' : 'Your Spoken Answer:')}
                 </span>
 
                 {isListening && (
@@ -594,14 +601,15 @@ export default function ListeningSessionPage() {
               onClick={isListening ? stopListening : startListening}
               className={`btn ${isListening ? 'btn-danger mic-active' : 'btn-secondary'}`}
               style={{ flex: 1, minHeight: '48px' }}
+              title={isListening ? "Manual stop (Or simply pause speaking)" : "Start speaking"}
             >
               {isListening ? <MicOff size={18} /> : <Mic size={18} />}
-              <span>{isListening ? 'Stop Speaking' : 'Start Mic'}</span>
+              <span>{isListening ? 'Stop (Or Pause)' : 'Start Mic'}</span>
             </button>
 
             <button
               onClick={() => handleEvaluate()}
-              disabled={isListening || (!transcript && !interimTranscript)}
+              disabled={!transcript && !interimTranscript}
               className="btn btn-primary"
               style={{ flex: 1.5, minHeight: '48px' }}
             >

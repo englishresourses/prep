@@ -176,6 +176,59 @@ describe('Listening Rubric Evaluation (Backward Compatibility)', () => {
     expect(syntax.marks).toBe(1);
     expect(syntax.band).toBe('Partially accurate');
   });
+
+  it('prevents over-confidence by strictly penalizing confused fragments like "tea powder"', () => {
+    const discountContext = {
+      item: {
+        q: 'What item was on discount today?',
+        passage: 'Today, you noticed a discount on organic green tea and grabbed two packets.',
+        modelAnswer: 'Organic green tea was on discount today.',
+        keywords: [['green tea', 'organic tea', 'tea']]
+      },
+      transcript: 'tea powder',
+      confidence: 0.89,
+      latencySec: 1.2
+    };
+
+    const result = evaluate(listeningRubric, discountContext);
+
+    // Should NOT be 10/10! Confused detail "powder" and sentence fragment should earn 5/10
+    expect(result.total).toBeLessThanOrEqual(6);
+    expect(result.total).toBe(5);
+
+    const comp = result.parameters.find(p => p.id === 'comprehension');
+    expect(comp.marks).toBe(2); // Developing: adjacent/confused detail
+    expect(comp.band).toBe('Developing');
+
+    const syntax = result.parameters.find(p => p.id === 'syntax');
+    expect(syntax.marks).toBe(1); // Fragment without verb
+    expect(syntax.band).toBe('Partially accurate');
+  });
+
+  it('awards full marks when student speaks complete, accurate sentence for the tea discount', () => {
+    const discountContext = {
+      item: {
+        q: 'What item was on discount today?',
+        passage: 'Today, you noticed a discount on organic green tea and grabbed two packets.',
+        modelAnswer: 'Organic green tea was on discount today.',
+        keywords: [['green tea', 'organic tea', 'tea']]
+      },
+      transcript: 'Organic green tea was on discount today.',
+      confidence: 0.95,
+      latencySec: 1.2
+    };
+
+    const result = evaluate(listeningRubric, discountContext);
+
+    expect(result.total).toBe(10);
+    const comp = result.parameters.find(p => p.id === 'comprehension');
+    expect(comp.marks).toBe(4);
+    expect(comp.band).toBe('Exemplary');
+
+    const syntax = result.parameters.find(p => p.id === 'syntax');
+    expect(syntax.marks).toBe(2);
+    expect(syntax.band).toBe('Accurate');
+  });
 });
 
 describe('Situational Dialog Rubric Evaluation', () => {

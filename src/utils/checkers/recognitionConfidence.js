@@ -1,3 +1,5 @@
+import { tokenize } from '../normalize';
+
 /**
  * Checker for Pronunciation & Articulatory Clarity
  * Supports confidence tiers (sorted descending) with backward compatibility for listening keys.
@@ -7,6 +9,8 @@ export function recognitionConfidence(config = {}, context = {}) {
   if (!transcript) {
     return { marks: 0 };
   }
+
+  const tokens = tokenize(transcript);
 
   // Resolve confidence score
   let confidenceVal = 0.92; // Default for typing fallback or unmetered speech
@@ -37,6 +41,15 @@ export function recognitionConfidence(config = {}, context = {}) {
       marks = tier.marks;
       break;
     }
+  }
+
+  // Brief fragments (< 3 words) that are not an exact single-word target answer cannot demonstrate sustained pronunciation
+  const keywords = context.item?.keywords || [];
+  const isExactSingleEntity = tokens.length === 1 && keywords.some(group =>
+    group.some(alt => tokenize(alt).length === 1 && tokenize(alt)[0] === tokens[0])
+  );
+  if (!isExactSingleEntity && tokens.length < 3) {
+    marks = Math.min(marks, 1.0);
   }
 
   marks = Math.max(0, marks);

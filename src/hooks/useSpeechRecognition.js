@@ -8,7 +8,12 @@ export function useSpeechRecognition(options = {}) {
   const [errorCode, setErrorCode] = useState(null);
   const [confidence, setConfidence] = useState(null);
   const [audioLevel, setAudioLevel] = useState(0); // 0 - 100 real-time mic volume level
+  const [isPauseDetected, setIsPauseDetected] = useState(false);
   const [lang, setLang] = useState(options.defaultLang || 'en-US');
+
+  const autoStopOnPause = options.autoStopOnPause !== false;
+  const pauseTimeoutMs = options.pauseTimeoutMs || 1800; // 1.8 seconds conversational pause
+  const onSpeechEnd = options.onSpeechEnd;
 
   // Timing metadata for evaluation engine
   const [timing, setTiming] = useState({
@@ -19,6 +24,8 @@ export function useSpeechRecognition(options = {}) {
 
   const recognitionRef = useRef(null);
   const shouldBeListeningRef = useRef(false);
+  const hasSpokenRef = useRef(false);
+  const silenceTimerRef = useRef(null);
   const accumulatedFinalRef = useRef('');
   const streamRef = useRef(null);
   const audioContextRef = useRef(null);
@@ -28,13 +35,18 @@ export function useSpeechRecognition(options = {}) {
   const isSpeechRecSupported = typeof window !== 'undefined' && 
     Boolean(window.SpeechRecognition || window.webkitSpeechRecognition);
 
+  const clearSilenceTimer = useCallback(() => {
+    if (silenceTimerRef.current) {
+      clearTimeout(silenceTimerRef.current);
+      silenceTimerRef.current = null;
+    }
+  }, []);
+
   // Setup hardware Automatic Gain Control (AGC) & volume analyser via Web Audio
   const startAudioMonitoring = useCallback(async () => {
     try {
       if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) return;
 
-      // Request hardware microphone stream with Auto Gain Control, Noise Suppression, & Echo Cancellation
-      // This commands the OS/browser HAL to dynamically boost low-volume voices
       const stream = await navigator.mediaDevices.getUserMedia({
         audio: {
           autoGainControl: true,
@@ -61,13 +73,11 @@ export function useSpeechRecognition(options = {}) {
           if (!shouldBeListeningRef.current) return;
           analyser.getByteFrequencyData(dataArray);
 
-          // Compute average frequency magnitude
           let sum = 0;
           for (let i = 0; i < dataArray.length; i++) {
             sum += dataArray[i];
           }
           const avg = sum / dataArray.length;
-          // Scale non-linearly with high sensitivity for quiet/normal speaking voices
           const scaled = Math.min(100, Math.round((avg / 35) * 100));
           setAudioLevel(scaled);
 
@@ -103,6 +113,7 @@ export function useSpeechRecognition(options = {}) {
   }, []);
 
   const stopListening = useCallback(() => {
+    clearSilenceTimer();
     shouldBeListeningRef.current = false;
 
     // Flush any pending interim speech into the final transcript
@@ -127,9 +138,10 @@ export function useSpeechRecognition(options = {}) {
 
     stopAudioMonitoring();
     setIsListening(false);
-  }, [stopAudioMonitoring]);
+  }, [clearSilenceTimer, stopAudioMonitoring]);
 
   const abortListening = useCallback(() => {
+    clearSilenceTimer();
     shouldBeListeningRef.current = false;
     if (recognitionRef.current) {
       try {
@@ -141,9 +153,13 @@ export function useSpeechRecognition(options = {}) {
     stopAudioMonitoring();
     setIsListening(false);
     setInterimTranscript('');
-  }, [stopAudioMonitoring]);
+    setIsPauseDetected(false);
+  }, [clearSilenceTimer, stopAudioMonitoring]);
 
   const resetTranscript = useCallback(() => {
+    clearSilenceTimer();
+    hasSpokenRef.current = false;
+    setIsPauseDetected(false);
     accumulatedFinalRef.current = '';
     currentSessionFinalRef.current = '';
     setTranscript('');
@@ -157,7 +173,7 @@ export function useSpeechRecognition(options = {}) {
       firstResultTime: null,
       resultTimestamps: []
     });
-  }, []);
+  }, [clearSilenceTimer]);
 
   const startListening = useCallback((customLang = null) => {
     if (!isSpeechRecSupported) {
@@ -168,6 +184,8 @@ export function useSpeechRecognition(options = {}) {
 
     resetTranscript();
     shouldBeListeningRef.current = true;
+    hasSpokenRef.current = false;
+    setIsPauseDetected(false);
     startAudioMonitoring();
 
     const selectedLang = customLang || lang || 'en-US';
@@ -177,7 +195,6 @@ export function useSpeechRecognition(options = {}) {
       const recognition = new SpeechRec();
       recognitionRef.current = recognition;
 
-      // continuous = true keeps the microphone open across pauses so users do not get cut off
       recognition.continuous = true;
       recognition.interimResults = true;
       recognition.lang = selectedLang;
@@ -198,10 +215,14 @@ export function useSpeechRecognition(options = {}) {
         let currentSessionFinal = '';
         let interimTrans = '';
         let latestConf = 0.92;
+        let hasNewSpeech = false;
 
         for (let i = 0; i < event.results.length; i++) {
           const res = event.results[i];
           const text = res[0].transcript;
+          if (text && text.trim()) {
+            hasNewSpeech = true;
+          }
           if (res.isFinal) {
             currentSessionFinal += (currentSessionFinal ? ' ' : '') + text.trim();
             if (res[0].confidence !== undefined && res[0].confidence > 0) {
@@ -224,7 +245,6 @@ export function useSpeechRecognition(options = {}) {
           };
         });
 
-        // Combine any previously accumulated finalized text with the current session final text
         const fullFinal = [accumulatedFinalRef.current, currentSessionFinal].filter(Boolean).join(' ').trim();
         
         if (fullFinal) {
@@ -232,15 +252,39 @@ export function useSpeechRecognition(options = {}) {
           setConfidence(latestConf);
         }
         setInterimTranscript(interimTrans);
+
+        // Smart silence / pause detection:
+        // Once the user has spoken, start a countdown timer.
+        // If no new speech is heard for `pauseTimeoutMs` (e.g. 1.8s), auto-stop listening.
+        if (hasNewSpeech || fullFinal || interimTrans) {
+          hasSpokenRef.current = true;
+          clearSilenceTimer();
+
+          if (autoStopOnPause) {
+            silenceTimerRef.current = setTimeout(() => {
+              if (shouldBeListeningRef.current && hasSpokenRef.current) {
+                setIsPauseDetected(true);
+                stopListening();
+                if (typeof onSpeechEnd === 'function') {
+                  onSpeechEnd(fullFinal || interimTrans);
+                }
+              }
+            }, pauseTimeoutMs);
+          }
+        }
       };
 
       recognition.onerror = (event) => {
-        // 'no-speech' is a non-fatal silence event in continuous mode; do NOT kill listening
         if (event.error === 'no-speech') {
+          // If no speech has been heard yet, keep listening.
+          // If user already spoke and no-speech fires, finish listening.
+          if (hasSpokenRef.current && autoStopOnPause) {
+            setIsPauseDetected(true);
+            stopListening();
+          }
           return;
         }
 
-        // 'aborted' happens during normal teardown; ignore
         if (event.error === 'aborted') {
           return;
         }
@@ -259,7 +303,6 @@ export function useSpeechRecognition(options = {}) {
           setIsListening(false);
           stopAudioMonitoring();
         } else if (event.error === 'network') {
-          // If network hiccups, don't crash; let onend attempt restart if still active
           console.warn('Speech recognition network glitch; attempting auto-recovery');
         } else {
           setError(`Speech recognition error: ${event.error}`);
@@ -267,10 +310,17 @@ export function useSpeechRecognition(options = {}) {
       };
 
       recognition.onend = () => {
-        // If the user hasn't explicitly stopped listening, automatically restart recognition
-        // This prevents Chrome from cutting the user off after quiet pauses
+        // If user already spoke and paused, conclude listening gracefully like an AI assistant
+        if (hasSpokenRef.current && autoStopOnPause) {
+          setIsPauseDetected(true);
+          shouldBeListeningRef.current = false;
+          setIsListening(false);
+          stopAudioMonitoring();
+          return;
+        }
+
+        // Otherwise if user hasn't spoken yet and didn't cancel, keep microphone open
         if (shouldBeListeningRef.current) {
-          // Save what we have accumulated so far before the session recycled
           if (currentSessionFinalRef.current) {
             accumulatedFinalRef.current = [accumulatedFinalRef.current, currentSessionFinalRef.current].filter(Boolean).join(' ').trim();
             currentSessionFinalRef.current = '';
@@ -295,10 +345,11 @@ export function useSpeechRecognition(options = {}) {
       setIsListening(false);
       stopAudioMonitoring();
     }
-  }, [isSpeechRecSupported, lang, resetTranscript, startAudioMonitoring, stopAudioMonitoring]);
+  }, [isSpeechRecSupported, lang, resetTranscript, startAudioMonitoring, stopAudioMonitoring, autoStopOnPause, pauseTimeoutMs, onSpeechEnd, clearSilenceTimer, stopListening]);
 
   useEffect(() => {
     return () => {
+      clearSilenceTimer();
       shouldBeListeningRef.current = false;
       if (recognitionRef.current) {
         try {
@@ -307,7 +358,7 @@ export function useSpeechRecognition(options = {}) {
       }
       stopAudioMonitoring();
     };
-  }, [stopAudioMonitoring]);
+  }, [clearSilenceTimer, stopAudioMonitoring]);
 
   // Combined full transcript (finalized + interim in progress)
   const combinedTranscript = [transcript, interimTranscript].filter(Boolean).join(' ').trim();
@@ -320,6 +371,7 @@ export function useSpeechRecognition(options = {}) {
     interimTranscript,
     combinedTranscript,
     audioLevel,
+    isPauseDetected,
     lang,
     setLang,
     error,

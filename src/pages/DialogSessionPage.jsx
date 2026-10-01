@@ -47,13 +47,18 @@ export default function DialogSessionPage() {
     interimTranscript,
     combinedTranscript,
     audioLevel,
+    isPauseDetected,
     error: micError,
     confidence,
     timing,
     startListening,
     stopListening,
     resetTranscript
-  } = useSpeechRecognition({ defaultLang: 'en-US' });
+  } = useSpeechRecognition({
+    defaultLang: 'en-US',
+    autoStopOnPause: true,
+    pauseTimeoutMs: 1800
+  });
 
   useEffect(() => {
     return () => {
@@ -399,9 +404,11 @@ export default function DialogSessionPage() {
                   fontWeight: 700,
                   textTransform: 'uppercase',
                   letterSpacing: '0.04em',
-                  color: isListening ? 'var(--primary)' : 'var(--text-muted)'
+                  color: isListening ? 'var(--primary)' : (isPauseDetected ? 'var(--success)' : 'var(--text-muted)')
                 }}>
-                  {isListening ? '🔴 Recording your response...' : 'Your Spoken Response:'}
+                  {isListening 
+                    ? '🔴 Listening... (Stops automatically when you finish speaking)' 
+                    : (isPauseDetected ? '✓ Finished Speaking (Pause Detected)' : 'Your Spoken Response:')}
                 </span>
 
                 {isListening && (
@@ -494,14 +501,15 @@ export default function DialogSessionPage() {
               onClick={isListening ? stopListening : startListening}
               className={`btn ${isListening ? 'btn-danger mic-active' : 'btn-secondary'}`}
               style={{ flex: 1, minHeight: '48px' }}
+              title={isListening ? "Manual stop (Or simply pause speaking)" : "Start speaking"}
             >
               {isListening ? <MicOff size={18} /> : <Mic size={18} />}
-              <span>{isListening ? 'Stop Speaking' : 'Start Mic'}</span>
+              <span>{isListening ? 'Stop (Or Pause)' : 'Start Mic'}</span>
             </button>
 
             <button
               onClick={() => handleEvaluateTurn()}
-              disabled={isListening || (!transcript && !interimTranscript)}
+              disabled={!transcript && !interimTranscript}
               className="btn btn-primary"
               style={{ flex: 1.5, minHeight: '48px', background: 'linear-gradient(135deg, #0EA5E9, #0284C7)' }}
             >

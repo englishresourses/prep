@@ -44,6 +44,16 @@ export function latencyFluency(config = {}, context = {}) {
     }
   }
 
+  // A brief 1-2 word fragment (e.g. "tea powder") cannot demonstrate sustained conversational fluency.
+  // Only an exact single-entity target answer (e.g. "Wednesday") retains full tier marks.
+  const keywords = context.item?.keywords || [];
+  const isExactSingleEntity = tokens.length === 1 && keywords.some(group =>
+    group.some(alt => tokenize(alt).length === 1 && tokenize(alt)[0] === tokens[0])
+  );
+  if (!isExactSingleEntity && tokens.length < 3) {
+    marks = Math.min(marks, 1);
+  }
+
   // Filler detection
   const fillers = config.fillers || ["um", "uh", "er", "like", "you know"];
   let fillerCount = 0;

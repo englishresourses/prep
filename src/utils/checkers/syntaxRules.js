@@ -138,7 +138,7 @@ export function syntaxRules(config, context) {
   }
 
   // -------------------------------------------------------------
-  // LISTENING MODE (Existing behavior intact)
+  // LISTENING MODE
   // -------------------------------------------------------------
   const {
     pronounShifts = [["you", "i"], ["your", "my"], ["yours", "mine"]],
@@ -154,22 +154,59 @@ export function syntaxRules(config, context) {
     }
   });
 
-  // Short answers allowed if direct and accurate (e.g. "Wednesday" or "Gate 45")
-  if (allowShortNounPhraseAnswers && tokens.length < minWordsForSentence) {
-    if (hasPronounSlip) {
-      return { marks: 1 };
-    }
-    return { marks: 2 };
-  }
-
-  // Sentence level evaluation
   if (hasPronounSlip) {
     return { marks: 1 };
   }
 
-  if (tokens.length >= minWordsForSentence) {
-    return { marks: 2 };
+  // Check subject-verb concord slips (e.g. "I has", "he have", "they was", "we was")
+  const concordErrorPatterns = [
+    /\bi\s+(?:is|are|has)\b/i,
+    /\b(?:he|she|it)\s+(?:have|do|were)\b/i,
+    /\b(?:they|we|you)\s+was\b/i
+  ];
+  const hasConcordError = concordErrorPatterns.some(pat => pat.test(rawTranscript));
+  if (hasConcordError) {
+    return { marks: 1 };
   }
 
-  return { marks: 1 };
+  // Check if utterance contains at least one verb / predicate
+  const commonVerbs = new Set([
+    ...COMMON_AUXILIARIES,
+    'buy', 'buys', 'bought', 'shop', 'shops', 'shopped', 'visit', 'visits', 'visited',
+    'live', 'lives', 'lived', 'grab', 'grabs', 'grabbed', 'relax', 'relaxes', 'relaxed',
+    'water', 'waters', 'watering', 'watered', 'find', 'finds', 'found', 'like', 'likes', 'liked',
+    'take', 'takes', 'took', 'taken', 'bring', 'brings', 'brought', 'make', 'makes', 'made',
+    'get', 'gets', 'got', 'gotten', 'go', 'goes', 'went', 'gone', 'see', 'sees', 'saw', 'seen',
+    'work', 'works', 'worked', 'stay', 'stays', 'stayed', 'pay', 'pays', 'paid', 'help', 'helps', 'helped',
+    'carry', 'carries', 'carried', 'need', 'needs', 'needed', 'want', 'wants', 'wanted'
+  ]);
+
+  const hasVerb = tokens.some(t => 
+    commonVerbs.has(t) || 
+    t.endsWith('ed') || 
+    t.endsWith('ing')
+  );
+
+  // Short answers: e.g. "Wednesday" (exact single-entity answer to "What day...?")
+  if (tokens.length < minWordsForSentence) {
+    // If exact single-token target entity (e.g. "Wednesday") and allowed:
+    const keywords = context.item?.keywords || [];
+    const isExactSingleEntity = keywords.some(group => 
+      group.some(alt => tokenize(alt).length === 1 && tokenize(alt)[0] === tokens[0])
+    );
+
+    if (allowShortNounPhraseAnswers && isExactSingleEntity && tokens.length === 1) {
+      return { marks: 2 }; // Direct target entity
+    }
+
+    // Bare fragments with unmentioned modifiers or no verb (e.g. "tea powder") get 1 mark
+    return { marks: 1 };
+  }
+
+  // Utterance with 3+ words: must contain a verb to be a complete sentence
+  if (!hasVerb) {
+    return { marks: 1 }; // Noun phrase fragment without a predicate
+  }
+
+  return { marks: 2 }; // Complete sentence with proper concord and shifted pronouns
 }
