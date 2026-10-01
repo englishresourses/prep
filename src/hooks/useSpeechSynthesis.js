@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { getAppSettings } from '../services/storage';
+import { getAppSettings, saveAppSettings } from '../services/storage';
 
 export function useSpeechSynthesis() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [voices, setVoices] = useState([]);
-  const [selectedVoice, setSelectedVoice] = useState(null);
-  const [rate, setRate] = useState(() => getAppSettings().speechRate || 1.0);
+  const [selectedVoice, setSelectedVoiceState] = useState(null);
+  const [rate, setRateState] = useState(() => getAppSettings().speechRate || 1.0);
   const [replayCount, setReplayCount] = useState(0);
   const maxReplays = 2;
 
@@ -14,6 +14,18 @@ export function useSpeechSynthesis() {
   const fullTextRef = useRef('');
   const charIndexRef = useRef(0);
   const activeOptionsRef = useRef({});
+
+  const setSelectedVoice = useCallback((voice) => {
+    setSelectedVoiceState(voice);
+    if (voice && voice.name) {
+      saveAppSettings({ preferredVoiceName: voice.name });
+    }
+  }, []);
+
+  const setRate = useCallback((newRate) => {
+    setRateState(newRate);
+    saveAppSettings({ speechRate: newRate });
+  }, []);
 
   // Load browser voices
   useEffect(() => {
@@ -24,23 +36,38 @@ export function useSpeechSynthesis() {
     const loadVoices = () => {
       const availableVoices = window.speechSynthesis.getVoices();
       if (availableVoices && availableVoices.length > 0) {
-        setVoices(availableVoices);
+        // Sort voices: English voices first, then alphabetical by name
+        const sorted = [...availableVoices].sort((a, b) => {
+          const aIsEn = a.lang.toLowerCase().startsWith('en');
+          const bIsEn = b.lang.toLowerCase().startsWith('en');
+          if (aIsEn && !bIsEn) return -1;
+          if (!aIsEn && bIsEn) return 1;
+          return a.name.localeCompare(b.name);
+        });
+
+        setVoices(sorted);
+
+        // Check if user previously saved a preferred voice
+        const savedVoiceName = getAppSettings().preferredVoiceName;
+        let preferred = savedVoiceName ? sorted.find(v => v.name === savedVoiceName) : null;
 
         // Preference 1: Microsoft Mark - English (United States) (en-US)
-        let preferred = availableVoices.find(v => {
-          const name = v.name.toLowerCase();
-          const lang = v.lang.toLowerCase().replace('_', '-');
-          return name.includes('mark') && (lang.startsWith('en-us') || name.includes('united states') || lang.startsWith('en'));
-        });
+        if (!preferred) {
+          preferred = sorted.find(v => {
+            const name = v.name.toLowerCase();
+            const lang = v.lang.toLowerCase().replace('_', '-');
+            return name.includes('mark') && (lang.startsWith('en-us') || name.includes('united states') || lang.startsWith('en'));
+          });
+        }
 
         // Preference 2: Any voice containing 'mark'
         if (!preferred) {
-          preferred = availableVoices.find(v => v.name.toLowerCase().includes('mark'));
+          preferred = sorted.find(v => v.name.toLowerCase().includes('mark'));
         }
 
         // Preference 3: Any Microsoft US English voice
         if (!preferred) {
-          preferred = availableVoices.find(v => {
+          preferred = sorted.find(v => {
             const name = v.name.toLowerCase();
             const lang = v.lang.toLowerCase().replace('_', '-');
             return name.includes('microsoft') && (lang === 'en-us' || lang.startsWith('en-us'));
@@ -49,7 +76,7 @@ export function useSpeechSynthesis() {
 
         // Preference 4: Any US English voice (en-US)
         if (!preferred) {
-          preferred = availableVoices.find(v => {
+          preferred = sorted.find(v => {
             const lang = v.lang.toLowerCase().replace('_', '-');
             return lang === 'en-us' || lang.startsWith('en-us');
           });
@@ -57,10 +84,10 @@ export function useSpeechSynthesis() {
 
         // Preference 5: Any English voice
         if (!preferred) {
-          preferred = availableVoices.find(v => v.lang.toLowerCase().startsWith('en'));
+          preferred = sorted.find(v => v.lang.toLowerCase().startsWith('en'));
         }
 
-        setSelectedVoice(preferred || availableVoices[0]);
+        setSelectedVoiceState(preferred || sorted[0]);
       }
     };
 
@@ -103,8 +130,9 @@ export function useSpeechSynthesis() {
     const utterance = new SpeechSynthesisUtterance(textToSpeak);
     utteranceRef.current = utterance;
 
-    if (selectedVoice) {
-      utterance.voice = selectedVoice;
+    const voiceToUse = activeOptionsRef.current.voice || selectedVoice;
+    if (voiceToUse) {
+      utterance.voice = voiceToUse;
     }
 
     const currentRate = activeOptionsRef.current.rate !== undefined ? activeOptionsRef.current.rate : rate;

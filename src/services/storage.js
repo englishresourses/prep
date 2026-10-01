@@ -189,6 +189,7 @@ export function clearAllProgress() {
 export function getAppSettings() {
   return safeLocalStorage.getItem(STORAGE_KEY_SETTINGS, {
     speechRate: 1.0,
+    preferredVoiceName: '',
     theme: 'dark'
   });
 }

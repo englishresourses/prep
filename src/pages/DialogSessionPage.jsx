@@ -23,6 +23,7 @@ import { evaluateDialogTurn, evaluateDialogSession } from '../utils/dialogScorer
 import { saveAttempt, getAppSettings, saveAppSettings } from '../services/storage';
 import WordDiffViewer from '../components/dialog/WordDiffViewer';
 import RubricBreakdown from '../components/common/RubricBreakdown';
+import VoiceControlBar from '../components/common/VoiceControlBar';
 
 export default function DialogSessionPage() {
   const { id } = useParams();
@@ -39,7 +40,7 @@ export default function DialogSessionPage() {
   // Timestamp when prompt audio finished reading
   const promptEndTimeRef = useRef(null);
 
-  const { speak, stop: stopTTS, isPlaying: isTTSPlaying, rate, setRate } = useSpeechSynthesis();
+  const { speak, stop: stopTTS, isPlaying: isTTSPlaying, rate, setRate, voices, selectedVoice, setSelectedVoice } = useSpeechSynthesis();
   const {
     isListening,
     transcript,
@@ -265,6 +266,17 @@ export default function DialogSessionPage() {
             </div>
           </div>
 
+          {/* Voice Selector & Audio Settings for Conversation Partner */}
+          <VoiceControlBar
+            voices={voices}
+            selectedVoice={selectedVoice}
+            onSelectVoice={setSelectedVoice}
+            rate={rate}
+            onChangeRate={setRate}
+            label="Conversation Partner / Interviewer Voice"
+            previewSample="Hello! I will be your conversation partner for this scenario."
+          />
+
           <button
             onClick={handleStartRolePlay}
             className="btn btn-primary"
@@ -288,7 +300,7 @@ export default function DialogSessionPage() {
             borderLeft: '4px solid var(--accent-cyan)',
             marginBottom: '1.5rem'
           }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.85rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.85rem', flexWrap: 'wrap', gap: '0.75rem' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--accent-cyan)', letterSpacing: '0.04em' }}>
                   TURN {currentTurnIndex + 1} OF {dialog.turns.length}
@@ -298,18 +310,29 @@ export default function DialogSessionPage() {
                 </span>
               </div>
 
-              <button
-                onClick={() => {
-                  stopListening();
-                  playPromptAndListen(currentTurnIndex);
-                }}
-                disabled={isTTSPlaying}
-                className="btn btn-secondary"
-                style={{ minHeight: '36px', padding: '0.35rem 0.85rem', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}
-              >
-                <Volume2 size={16} color="var(--accent-cyan)" />
-                <span>{isTTSPlaying ? 'Playing Audio...' : 'Replay Prompt Audio'}</span>
-              </button>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+                <VoiceControlBar
+                  voices={voices}
+                  selectedVoice={selectedVoice}
+                  onSelectVoice={setSelectedVoice}
+                  rate={rate}
+                  onChangeRate={setRate}
+                  compact={true}
+                  previewSample="This is your conversation partner's voice."
+                />
+                <button
+                  onClick={() => {
+                    stopListening();
+                    playPromptAndListen(currentTurnIndex);
+                  }}
+                  disabled={isTTSPlaying}
+                  className="btn btn-secondary"
+                  style={{ minHeight: '32px', padding: '0.25rem 0.75rem', fontSize: '0.8rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}
+                >
+                  <Volume2 size={15} color="var(--accent-cyan)" />
+                  <span>{isTTSPlaying ? 'Playing Audio...' : 'Replay Prompt Audio'}</span>
+                </button>
+              </div>
             </div>
 
             <div style={{

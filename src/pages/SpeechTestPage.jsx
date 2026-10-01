@@ -294,11 +294,15 @@ export default function SpeechTestPage() {
                     outline: 'none'
                   }}
                 >
-                  {voices.map((v) => (
-                    <option key={v.name} value={v.name}>
-                      {v.name} ({v.lang})
-                    </option>
-                  ))}
+                  {voices.map((v) => {
+                    const isEn = v.lang.toLowerCase().startsWith('en');
+                    const cleanName = v.name.replace(/Microsoft |Google |Apple /i, '');
+                    return (
+                      <option key={v.name} value={v.name}>
+                        {isEn ? '🗣️ ' : '🌐 '}{cleanName} ({v.lang})
+                      </option>
+                    );
+                  })}
                 </select>
               </div>
             )}

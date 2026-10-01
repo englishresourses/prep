@@ -25,6 +25,7 @@ import { useSpeechRecognition } from '../hooks/useSpeechRecognition';
 import { scoreListeningAnswer } from '../utils/listeningScorer';
 import { saveAttempt } from '../services/storage';
 import RubricBreakdown from '../components/common/RubricBreakdown';
+import VoiceControlBar from '../components/common/VoiceControlBar';
 
 export default function ListeningSessionPage() {
   const { id } = useParams();
@@ -50,7 +51,10 @@ export default function ListeningSessionPage() {
     setRate, 
     replayCount, 
     maxReplays, 
-    canReplay 
+    canReplay,
+    voices,
+    selectedVoice,
+    setSelectedVoice
   } = useSpeechSynthesis();
 
   const {
@@ -252,6 +256,17 @@ export default function ListeningSessionPage() {
 
           <h1 style={{ fontSize: '1.75rem', marginBottom: '1rem' }}>{set.title}</h1>
 
+          {/* Voice Selector & Speed Controls before playing audio */}
+          <VoiceControlBar
+            voices={voices}
+            selectedVoice={selectedVoice}
+            onSelectVoice={setSelectedVoice}
+            rate={rate}
+            onChangeRate={setRate}
+            label="Passage Narrator Voice"
+            previewSample="Hello! This voice will narrate the listening comprehension passage."
+          />
+
           {/* Audio Listening Card (Passage text is hidden for listening comprehension practice) */}
           <div style={{
             padding: '1.75rem 1.5rem',
@@ -370,19 +385,31 @@ export default function ListeningSessionPage() {
             border: '1px solid var(--border-subtle)',
             marginBottom: '1.5rem'
           }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem', flexWrap: 'wrap', gap: '0.75rem' }}>
               <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--primary)', letterSpacing: '0.04em' }}>
                 QUESTION {currentQIndex + 1} OF {set.questions.length}
               </span>
-              <button
-                onClick={() => speak(currentQuestion.q, { rate })}
-                disabled={isTTSPlaying}
-                className="btn btn-secondary"
-                style={{ minHeight: '38px', padding: '0.35rem 0.85rem', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}
-              >
-                <Volume2 size={17} color="var(--primary)" />
-                <span>{isTTSPlaying ? 'Playing Audio...' : 'Listen to Question Again'}</span>
-              </button>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+                <VoiceControlBar
+                  voices={voices}
+                  selectedVoice={selectedVoice}
+                  onSelectVoice={setSelectedVoice}
+                  rate={rate}
+                  onChangeRate={setRate}
+                  compact={true}
+                  previewSample="This is how the questions are read aloud."
+                />
+                <button
+                  onClick={() => speak(currentQuestion.q, { rate })}
+                  disabled={isTTSPlaying}
+                  className="btn btn-secondary"
+                  style={{ minHeight: '32px', padding: '0.25rem 0.75rem', fontSize: '0.8rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}
+                >
+                  <Volume2 size={15} color="var(--primary)" />
+                  <span>{isTTSPlaying ? 'Playing Audio...' : 'Listen to Question Again'}</span>
+                </button>
+              </div>
             </div>
 
             <div style={{
