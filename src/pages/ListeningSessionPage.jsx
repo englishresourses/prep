@@ -26,6 +26,7 @@ import { scoreListeningAnswer } from '../utils/listeningScorer';
 import { saveAttempt } from '../services/storage';
 import RubricBreakdown from '../components/common/RubricBreakdown';
 import VoiceControlBar from '../components/common/VoiceControlBar';
+import { playMicStartBeep, playMicStopBeep } from '../utils/audioCue';
 
 export default function ListeningSessionPage() {
   const { id } = useParams();
@@ -74,7 +75,10 @@ export default function ListeningSessionPage() {
   } = useSpeechRecognition({
     defaultLang: 'en-US',
     autoStopOnPause: true,
-    pauseTimeoutMs: 1800
+    pauseTimeoutMs: 1800,
+    onSpeechEnd: () => {
+      playMicStopBeep();
+    }
   });
 
   // Stop all audio on unmount or route change
@@ -122,7 +126,7 @@ export default function ListeningSessionPage() {
     readQuestionAndStartMic(0);
   };
 
-  // Speaks question aloud, then auto-starts microphone
+  // Speaks question aloud, then auto-starts microphone with audio beep
   const readQuestionAndStartMic = (qIdx) => {
     const q = set.questions[qIdx];
     if (!q) return;
@@ -134,10 +138,21 @@ export default function ListeningSessionPage() {
     speak(q.q, {
       rate,
       onEnd: () => {
-        // Auto-start microphone after question finishes reading
+        // Play beep cue when mic opens and starts recording
+        playMicStartBeep();
         startListening();
       }
     });
+  };
+
+  // Handler to re-record speech answer directly
+  const handleRerecord = () => {
+    stopListening();
+    resetTranscript();
+    setTypedAnswer('');
+    setShowTypingFallback(false);
+    playMicStartBeep();
+    startListening();
   };
 
   // Evaluate current question answer
@@ -462,30 +477,42 @@ export default function ListeningSessionPage() {
           </div>
 
           {/* Microphone status / Live transcript screen */}
-          <div style={{
-            minHeight: '140px',
-            padding: '1.25rem',
-            borderRadius: 'var(--radius-md)',
-            background: 'var(--bg-secondary)',
-            border: `2px solid ${isListening ? 'var(--primary)' : 'var(--border-subtle)'}`,
-            marginBottom: '1.5rem',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between'
-          }}>
+          <div 
+            className={isListening ? 'recording-border-active' : ''}
+            style={{
+              minHeight: '140px',
+              padding: '1.25rem',
+              borderRadius: 'var(--radius-md)',
+              background: 'var(--bg-secondary)',
+              border: `2px solid ${isListening ? '#EF4444' : (isPauseDetected ? 'var(--success)' : 'var(--border-subtle)')}`,
+              marginBottom: '1.5rem',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              transition: 'all var(--transition-fast)'
+            }}
+          >
             <div>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem', flexWrap: 'wrap', gap: '0.5rem' }}>
-                <span style={{
-                  fontSize: '0.75rem',
-                  fontWeight: 700,
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.04em',
-                  color: isListening ? 'var(--primary)' : (isPauseDetected ? 'var(--success)' : 'var(--text-muted)')
-                }}>
-                  {isListening 
-                    ? '🔴 Listening... (Stops automatically when you finish speaking)' 
-                    : (isPauseDetected ? '✓ Finished Speaking (Pause Detected)' : 'Your Spoken Answer:')}
-                </span>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.65rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+                {isListening ? (
+                  <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.55rem', background: 'rgba(239, 68, 68, 0.12)', border: '1px solid rgba(239, 68, 68, 0.3)', padding: '0.3rem 0.75rem', borderRadius: 'var(--radius-full)' }}>
+                    <span className="recording-blink-dot" />
+                    <span style={{ fontSize: '0.78rem', fontWeight: 800, color: '#EF4444', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+                      Recording Audio... Speak Now
+                    </span>
+                  </div>
+                ) : isPauseDetected || (transcript && !isListening) ? (
+                  <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem', background: 'rgba(34, 197, 94, 0.12)', border: '1px solid rgba(34, 197, 94, 0.3)', padding: '0.3rem 0.75rem', borderRadius: 'var(--radius-full)', color: 'var(--success)' }}>
+                    <CheckCircle2 size={15} />
+                    <span style={{ fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.03em', textTransform: 'uppercase' }}>
+                      Answer Recorded (Ready to evaluate)
+                    </span>
+                  </div>
+                ) : (
+                  <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', color: 'var(--text-muted)' }}>
+                    Your Spoken Answer:
+                  </span>
+                )}
 
                 {isListening && (
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
@@ -595,41 +622,32 @@ export default function ListeningSessionPage() {
             </div>
           )}
 
-          {/* Action buttons */}
+          {/* Action buttons - Start Mic removed; replaced with automatic beep + Evaluate, Re-record, Skip */}
           <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-            <button
-              onClick={isListening ? stopListening : startListening}
-              className={`btn ${isListening ? 'btn-danger mic-active' : 'btn-secondary'}`}
-              style={{ flex: 1, minHeight: '48px' }}
-              title={isListening ? "Manual stop (Or simply pause speaking)" : "Start speaking"}
-            >
-              {isListening ? <MicOff size={18} /> : <Mic size={18} />}
-              <span>{isListening ? 'Stop (Or Pause)' : 'Start Mic'}</span>
-            </button>
-
             <button
               onClick={() => handleEvaluate()}
               disabled={!transcript && !interimTranscript}
               className="btn btn-primary"
-              style={{ flex: 1.5, minHeight: '48px' }}
+              style={{ flex: 2, minHeight: '52px', fontSize: '1.05rem', fontWeight: 700 }}
             >
-              <CheckCircle2 size={18} />
+              <CheckCircle2 size={20} />
               <span>Evaluate Answer</span>
             </button>
 
             <button
-              onClick={handleRetryQuestion}
+              onClick={handleRerecord}
               className="btn btn-secondary"
-              style={{ minHeight: '48px' }}
-              title="Clear & Retry"
+              style={{ minHeight: '52px', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0 1.25rem' }}
+              title="Re-record your speech"
             >
               <RotateCcw size={18} />
+              <span>Re-record</span>
             </button>
 
             <button
               onClick={handleSkipQuestion}
               className="btn btn-secondary"
-              style={{ minHeight: '48px', color: 'var(--text-muted)' }}
+              style={{ minHeight: '52px', display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0 1.15rem', color: 'var(--text-muted)' }}
               title="Skip Question"
             >
               <SkipForward size={18} />
