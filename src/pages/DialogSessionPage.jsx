@@ -4,6 +4,8 @@ import {
   MessagesSquare, 
   ArrowLeft, 
   Play, 
+  Pause,
+  Headphones,
   Volume2, 
   Mic, 
   MicOff, 
@@ -41,7 +43,23 @@ export default function DialogSessionPage() {
   // Timestamp when prompt audio finished reading
   const promptEndTimeRef = useRef(null);
 
-  const { speak, stop: stopTTS, isPlaying: isTTSPlaying, rate, setRate, voices, selectedVoice, setSelectedVoice } = useSpeechSynthesis();
+  const { 
+    speak, 
+    stop: stopTTS, 
+    isPlaying: isTTSPlaying, 
+    pause: pauseTTS, 
+    resume: resumeTTS, 
+    isPaused: isTTSPaused, 
+    rate, 
+    setRate, 
+    replayCount, 
+    maxReplays, 
+    canReplay,
+    resetReplayCount,
+    voices, 
+    selectedVoice, 
+    setSelectedVoice 
+  } = useSpeechSynthesis();
   const {
     isListening,
     transcript,
@@ -84,9 +102,25 @@ export default function DialogSessionPage() {
 
   const currentTurn = dialog.turns[currentTurnIndex];
 
+  // Play scenario briefing audio aloud
+  const handlePlaySituation = () => {
+    if (isTTSPlaying) {
+      pauseTTS();
+    } else if (isTTSPaused) {
+      resumeTTS();
+    } else {
+      speak(dialog.situation, {
+        rate,
+        trackReplay: true,
+        onEnd: () => {}
+      });
+    }
+  };
+
   // Start the conversational turns
   const handleStartRolePlay = () => {
     stopTTS();
+    resetReplayCount();
     setPhase('turn');
     setCurrentTurnIndex(0);
     setTurnScores([]);
@@ -253,20 +287,105 @@ export default function DialogSessionPage() {
 
           <h1 style={{ fontSize: '1.75rem', marginBottom: '1rem' }}>{dialog.title}</h1>
 
-          {/* Situation card */}
+          {/* Audio-Only Scenario Briefing Card (Scenario text is hidden for listening activity practice) */}
           <div style={{
-            padding: '1.5rem',
+            padding: '1.75rem 1.5rem',
             borderRadius: 'var(--radius-md)',
-            background: 'var(--bg-secondary)',
-            border: '1px solid var(--border-subtle)',
-            marginBottom: '1.5rem'
+            background: isTTSPlaying ? 'rgba(14, 165, 233, 0.12)' : 'var(--bg-secondary)',
+            border: `1.5px solid ${isTTSPlaying ? 'var(--accent-cyan)' : 'var(--border-subtle)'}`,
+            marginBottom: '1.5rem',
+            transition: 'all var(--transition-normal)'
           }}>
-            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 700, marginBottom: '0.5rem' }}>
-              Your Scenario Context:
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.75rem' }}>
+              <div style={{
+                width: '48px',
+                height: '48px',
+                borderRadius: '50%',
+                background: isTTSPlaying ? 'var(--accent-cyan)' : 'var(--bg-card)',
+                color: isTTSPlaying ? '#FFFFFF' : 'var(--accent-cyan)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0,
+                boxShadow: isTTSPlaying ? '0 4px 14px rgba(14, 165, 233, 0.4)' : 'none'
+              }}>
+                <Headphones size={24} />
+              </div>
+
+              <div style={{ flex: 1 }}>
+                <div style={{ fontWeight: 700, fontSize: '1.05rem', color: isTTSPlaying ? 'var(--accent-cyan)' : 'var(--text-primary)' }}>
+                  {isTTSPlaying ? 'Speaking scenario context aloud... Listen carefully' : (isTTSPaused ? 'Scenario briefing paused' : 'Audio-Only Scenario Briefing')}
+                </div>
+                <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+                  {isTTSPlaying
+                    ? 'Pay close attention to your role, setting, and details you need to mention.'
+                    : 'The scenario context is hidden to test your listening skills. Click "Play Scenario Briefing" below to listen.'}
+                </div>
+              </div>
+
+              {isTTSPlaying && (
+                <div className="waveform-container">
+                  <div className="wave-bar active" style={{ background: 'var(--accent-cyan)' }} />
+                  <div className="wave-bar active" style={{ background: 'var(--accent-cyan)' }} />
+                  <div className="wave-bar active" style={{ background: 'var(--accent-cyan)' }} />
+                  <div className="wave-bar active" style={{ background: 'var(--accent-cyan)' }} />
+                  <div className="wave-bar active" style={{ background: 'var(--accent-cyan)' }} />
+                </div>
+              )}
             </div>
-            <p style={{ fontSize: '1.05rem', lineHeight: 1.6, color: 'var(--text-primary)' }}>
-              {dialog.situation}
-            </p>
+          </div>
+
+          {/* Audio Controls Bar */}
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            gap: '1rem',
+            padding: '1rem 1.25rem',
+            borderRadius: 'var(--radius-md)',
+            background: 'var(--bg-card)',
+            border: '1px solid var(--border-subtle)',
+            marginBottom: '1.75rem'
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <button
+                onClick={handlePlaySituation}
+                disabled={!canReplay && !isTTSPlaying && !isTTSPaused}
+                className="btn btn-primary"
+                style={{ minHeight: '44px', background: 'linear-gradient(135deg, #0EA5E9, #0284C7)' }}
+              >
+                {isTTSPlaying ? <Pause size={18} /> : <Play size={18} fill="currentColor" />}
+                <span>
+                  {isTTSPlaying ? 'Pause Briefing' : (isTTSPaused ? 'Resume Briefing' : `Play Scenario Briefing (${replayCount}/${maxReplays} plays)`)}
+                </span>
+              </button>
+
+              <span style={{ fontSize: '0.85rem', color: canReplay ? 'var(--text-muted)' : 'var(--danger)' }}>
+                {canReplay ? `${maxReplays - replayCount} replay(s) remaining` : 'Max replays reached'}
+              </span>
+            </div>
+
+            {/* Speed toggles */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+              <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Speed:</span>
+              {[0.8, 1.0, 1.2].map(s => (
+                <button
+                  key={s}
+                  onClick={() => setRate(s)}
+                  className={`btn ${rate === s ? 'btn-primary' : 'btn-secondary'}`}
+                  style={{
+                    padding: '0.2rem 0.55rem',
+                    fontSize: '0.75rem',
+                    minHeight: '28px',
+                    borderRadius: 'var(--radius-sm)',
+                    background: rate === s ? 'linear-gradient(135deg, #0EA5E9, #0284C7)' : undefined
+                  }}
+                >
+                  {s}x
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Instructions note */}
