@@ -12,7 +12,7 @@ import SpeechTestPage from './pages/SpeechTestPage';
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <BrowserSupportBanner />
         <Navbar />
