@@ -1,0 +1,324 @@
+{
+  "id": "dialogs",
+  "version": 1,
+  "title": "Situational Dialogue Role-Play",
+  "totalMarks": 10,
+  "scope": "turn",
+  "aggregation": "mean",
+  "parameters": [
+    {
+      "id": "pragmatic",
+      "label": "Pragmatic Appropriateness & Task Completion",
+      "max": 3.0,
+      "checker": "turnMatch",
+      "estimated": false,
+      "config": {
+        "coverageTiers": [
+          {
+            "minCoverage": 0.9,
+            "marks": 3.0
+          },
+          {
+            "minCoverage": 0.75,
+            "marks": 2.5
+          },
+          {
+            "minCoverage": 0.6,
+            "marks": 2.0
+          },
+          {
+            "minCoverage": 0.45,
+            "marks": 1.5
+          },
+          {
+            "minCoverage": 0.3,
+            "marks": 1.0
+          },
+          {
+            "minCoverage": 0.01,
+            "marks": 0.5
+          }
+        ],
+        "fuzzyMaxDistance": 1,
+        "fuzzyMinWordLength": 5,
+        "minLengthRatio": 0.5,
+        "maxLengthRatio": 1.6,
+        "lengthPenalty": 0.5,
+        "terseCapMarks": 1.5,
+        "singleSentenceRequired": true
+      },
+      "bands": [
+        {
+          "marks": 3.0,
+          "range": [
+            3.0,
+            3.0
+          ],
+          "label": "Exemplary",
+          "descriptor": "Incorporates the target prompt details in a single, well-formed sentence; no run-on or under-answering.",
+          "tip": ""
+        },
+        {
+          "marks": 2.5,
+          "range": [
+            2.0,
+            2.5
+          ],
+          "label": "Competent",
+          "descriptor": "Appropriate and polite, but omits a minor contextual detail.",
+          "tip": "Include every detail from the scenario (names, numbers, preferences) in your sentence."
+        },
+        {
+          "marks": 1.5,
+          "range": [
+            1.0,
+            1.5
+          ],
+          "label": "Developing",
+          "descriptor": "Misses key scenario facts; tone is robotic or too terse.",
+          "tip": "Say the full sentence naturally and include the key facts."
+        },
+        {
+          "marks": 0.5,
+          "range": [
+            0.0,
+            0.5
+          ],
+          "label": "Deficient",
+          "descriptor": "Incoherent, does not address the prompt, or silence.",
+          "tip": "Listen to the other person's line, then reply with the full sentence."
+        }
+      ]
+    },
+    {
+      "id": "syntax",
+      "label": "Syntactic Precision & Structural Concord",
+      "max": 2.5,
+      "checker": "syntaxRules",
+      "estimated": true,
+      "config": {
+        "startMarks": 2.5,
+        "minorSlipDeduction": 0.5,
+        "minorSlipFloor": 1.5,
+        "structuralErrorCap": 1.0,
+        "fragmentCap": 0.5,
+        "minWordsForSentence": 4,
+        "pronounAgreementPairs": [
+          [
+            "i",
+            "we"
+          ],
+          [
+            "my",
+            "our"
+          ],
+          [
+            "me",
+            "us"
+          ]
+        ],
+        "checkTenseAgainstReference": true,
+        "checkArticlesAgainstReference": true,
+        "checkAuxiliariesAgainstReference": true
+      },
+      "bands": [
+        {
+          "marks": 2.5,
+          "range": [
+            2.5,
+            2.5
+          ],
+          "label": "Exemplary",
+          "descriptor": "Flawless structure, correct verb forms, pronoun number and prepositions.",
+          "tip": ""
+        },
+        {
+          "marks": 2.0,
+          "range": [
+            1.5,
+            2.0
+          ],
+          "label": "Competent",
+          "descriptor": "Minor slip in agreement or articles; meaning intact.",
+          "tip": "Check small words: articles (a/the), I vs we, and prepositions."
+        },
+        {
+          "marks": 1.0,
+          "range": [
+            1.0,
+            1.0
+          ],
+          "label": "Developing",
+          "descriptor": "Tense discord, missing auxiliary verbs or fractured syntax.",
+          "tip": "Keep the verb tense consistent and don't skip helping verbs (am, have, would)."
+        },
+        {
+          "marks": 0.0,
+          "range": [
+            0.0,
+            0.5
+          ],
+          "label": "Deficient",
+          "descriptor": "Severe grammatical collapse; sentence disjointed.",
+          "tip": "Speak in a complete, grammatical sentence."
+        }
+      ]
+    },
+    {
+      "id": "fluency",
+      "label": "Fluency, Rhythm & Turn-Taking Latency",
+      "max": 2.5,
+      "checker": "latencyFluency",
+      "estimated": true,
+      "config": {
+        "latencyTiers": [
+          {
+            "belowSec": 1.5,
+            "marks": 2.5
+          },
+          {
+            "belowSec": 2.5,
+            "marks": 2.0
+          },
+          {
+            "belowSec": 3.0,
+            "marks": 1.0
+          },
+          {
+            "belowSec": 9999,
+            "marks": 0.5
+          }
+        ],
+        "fillers": [
+          "um",
+          "uh",
+          "er",
+          "like",
+          "you know"
+        ],
+        "fillerDeduction": 0.5,
+        "multipleFillersCapMarks": 1.0,
+        "midSpeechGapSec": 1.5,
+        "midSpeechGapCapMarks": 1.0,
+        "detectRepeatedWords": true,
+        "restartCapMarks": 1.0,
+        "abandonedMarks": 0.0
+      },
+      "bands": [
+        {
+          "marks": 2.5,
+          "range": [
+            2.5,
+            2.5
+          ],
+          "label": "Exemplary",
+          "descriptor": "Natural cadence, reply under 1.5s, no verbal clutter.",
+          "tip": ""
+        },
+        {
+          "marks": 2.0,
+          "range": [
+            1.5,
+            2.0
+          ],
+          "label": "Competent",
+          "descriptor": "Latency of 1.5 to 2.5s or one isolated filler; smooth once speaking.",
+          "tip": "Reply a little sooner and avoid fillers like 'um' and 'uh'."
+        },
+        {
+          "marks": 1.0,
+          "range": [
+            1.0,
+            1.0
+          ],
+          "label": "Developing",
+          "descriptor": "Halting rhythm, several hesitations or obvious restarts.",
+          "tip": "Plan the sentence while the other person speaks, then say it in one go."
+        },
+        {
+          "marks": 0.5,
+          "range": [
+            0.0,
+            0.5
+          ],
+          "label": "Deficient",
+          "descriptor": "Fragmented speech, silences over 3s, or unfinished turn.",
+          "tip": "Start within two seconds and finish the whole sentence."
+        }
+      ]
+    },
+    {
+      "id": "pronunciation",
+      "label": "Pronunciation & Lexical Stress",
+      "max": 2.0,
+      "checker": "recognitionConfidence",
+      "estimated": true,
+      "config": {
+        "confidenceTiers": [
+          {
+            "minConfidence": 0.9,
+            "marks": 2.0
+          },
+          {
+            "minConfidence": 0.8,
+            "marks": 1.5
+          },
+          {
+            "minConfidence": 0.65,
+            "marks": 1.0
+          },
+          {
+            "minConfidence": 0.4,
+            "marks": 0.5
+          },
+          {
+            "minConfidence": 0.0,
+            "marks": 0.0
+          }
+        ]
+      },
+      "bands": [
+        {
+          "marks": 2.0,
+          "range": [
+            2.0,
+            2.0
+          ],
+          "label": "Crisp",
+          "descriptor": "Crisp consonants, correct stress, natural intonation.",
+          "tip": ""
+        },
+        {
+          "marks": 1.5,
+          "range": [
+            1.5,
+            1.5
+          ],
+          "label": "Intelligible",
+          "descriptor": "Comprehensible with slight accent influence or minor stress slips.",
+          "tip": "Stress the key words in the sentence and link words smoothly."
+        },
+        {
+          "marks": 1.0,
+          "range": [
+            1.0,
+            1.0
+          ],
+          "label": "Inconsistent",
+          "descriptor": "Frequent slurring, flat monotone or marked misplaced stress.",
+          "tip": "Slow down, finish each word clearly and stress the main syllables."
+        },
+        {
+          "marks": 0.0,
+          "range": [
+            0.0,
+            0.5
+          ],
+          "label": "Unintelligible",
+          "descriptor": "Severe phonological errors; hard to understand.",
+          "tip": "Speak clearly, closer to the microphone, and a little slower."
+        }
+      ]
+    }
+  ]
+}

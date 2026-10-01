@@ -1,0 +1,81 @@
+{
+  "id": "listening",
+  "version": 1,
+  "title": "Short-Answer Listening Comprehension",
+  "totalMarks": 10,
+  "parameters": [
+    {
+      "id": "comprehension",
+      "label": "Comprehension & Entity Recall",
+      "max": 4,
+      "checker": "keywordRecall",
+      "estimated": false,
+      "config": {
+        "maxLengthRatio": 2.5,
+        "fuzzyMaxDistance": 1,
+        "fuzzyMinWordLength": 5,
+        "noResponsePhrases": ["i don't know", "i do not know", "no idea", "not sure", "i have no idea"],
+        "selfCorrectionMarkers": ["no i mean", "i mean", "sorry", "actually", "wait"]
+      },
+      "bands": [
+        { "marks": 4, "label": "Exemplary", "descriptor": "Exact target entity, direct answer, no extra narrative.", "tip": "" },
+        { "marks": 3, "label": "Proficient", "descriptor": "Correct entity but padded with background or self-corrected.", "tip": "Answer directly without extra background or corrections." },
+        { "marks": 2, "label": "Developing", "descriptor": "Partially accurate; adjacent or confused detail.", "tip": "Listen for the exact detail the question asks for." },
+        { "marks": 1, "label": "Minimal", "descriptor": "Primary entity missing, fabricated or irrelevant.", "tip": "Your answer did not contain the key detail from the passage." },
+        { "marks": 0, "label": "No Response", "descriptor": "Silence or 'I don't know'.", "tip": "Always attempt an answer using what you heard." }
+      ]
+    },
+    {
+      "id": "syntax",
+      "label": "Syntactic Precision",
+      "max": 2,
+      "checker": "syntaxRules",
+      "estimated": true,
+      "config": {
+        "pronounShifts": [["you", "i"], ["your", "my"], ["yours", "mine"]],
+        "minWordsForSentence": 3,
+        "allowShortNounPhraseAnswers": true
+      },
+      "bands": [
+        { "marks": 2, "label": "Accurate", "descriptor": "Correct structure, tense, pronoun shift and prepositions.", "tip": "" },
+        { "marks": 1, "label": "Partially accurate", "descriptor": "Minor slip, or failure to shift pronouns (you to I).", "tip": "Answer as the character: say 'I', not 'you'. Check your verb tense." },
+        { "marks": 0, "label": "Inaccurate", "descriptor": "Fragmented syntax, wrong tense, or breakdown that impedes meaning.", "tip": "Speak in a complete, correct sentence." }
+      ]
+    },
+    {
+      "id": "fluency",
+      "label": "Fluency & Response Latency",
+      "max": 2,
+      "checker": "latencyFluency",
+      "estimated": true,
+      "config": {
+        "fullMarksLatencyBelowSec": 2,
+        "partialMarksLatencyBelowSec": 4,
+        "midSpeechGapSec": 1.5,
+        "fillers": ["um", "uh", "like", "you know"],
+        "detectRepeatedWords": true
+      },
+      "bands": [
+        { "marks": 2, "label": "Fluent", "descriptor": "Latency under 2 seconds, continuous, no fillers or abrupt pauses.", "tip": "" },
+        { "marks": 1, "label": "Hesitant", "descriptor": "Latency 2 to 4 seconds, or 1-2 fillers/false starts.", "tip": "Start answering sooner and avoid fillers like 'um' and 'uh'." },
+        { "marks": 0, "label": "Dysfluent", "descriptor": "Delay over 4 seconds, halting delivery, or abandoned response.", "tip": "Begin within two seconds and keep a steady pace." }
+      ]
+    },
+    {
+      "id": "pronunciation",
+      "label": "Pronunciation & Articulatory Clarity",
+      "max": 2,
+      "checker": "recognitionConfidence",
+      "estimated": true,
+      "config": {
+        "fullMarksMinConfidence": 0.85,
+        "partialMarksMinConfidence": 0.6
+      },
+      "bands": [
+        { "marks": 2, "label": "Crisp", "descriptor": "Clear consonants, accurate stress, fully intelligible.", "tip": "" },
+        { "marks": 1, "label": "Impaired", "descriptor": "Muffled or misplaced stress, but target word decipherable.", "tip": "Speak a little slower and stress the key word clearly." },
+        { "marks": 0, "label": "Unintelligible", "descriptor": "Severe distortion; words unrecognizable.", "tip": "Speak clearly and closer to the microphone." }
+      ]
+    }
+  ]
+}

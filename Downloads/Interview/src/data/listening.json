@@ -1,0 +1,1629 @@
+[
+  {
+    "id": "L1",
+    "title": "Local Grocery Store (Supermarket)",
+    "passage": "Your name is Vikram. You live in Bengaluru. Every Wednesday evening, you visit the neighborhood supermarket to buy groceries for the week. Today, you noticed a discount on organic green tea and grabbed two packets. You are happy today because you also found the specific brand of whole-wheat flour that had been out of stock for weeks. Although you have to carry the heavy bags up three flights of stairs, you usually relax in your balcony while watering your potted plants.",
+    "questions": [
+      {
+        "q": "What day of the week do you shop for groceries?",
+        "modelAnswer": "I shop for groceries every Wednesday evening.",
+        "keywords": [
+          [
+            "wednesday"
+          ]
+        ]
+      },
+      {
+        "q": "What item was on discount today?",
+        "modelAnswer": "Organic green tea was on discount today.",
+        "keywords": [
+          [
+            "green tea",
+            "organic tea",
+            "tea"
+          ]
+        ]
+      },
+      {
+        "q": "Why are you happy today?",
+        "modelAnswer": "I am happy because I found the brand of whole-wheat flour that had been out of stock for weeks.",
+        "keywords": [
+          [
+            "flour",
+            "wheat",
+            "atta"
+          ],
+          [
+            "stock",
+            "found",
+            "available",
+            "finally"
+          ]
+        ]
+      },
+      {
+        "q": "What do you usually do in your balcony to relax?",
+        "modelAnswer": "I relax in my balcony while watering my potted plants.",
+        "keywords": [
+          [
+            "water",
+            "watering"
+          ],
+          [
+            "plants",
+            "plant"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "L2",
+    "title": "Neighborhood Park (Morning Jog)",
+    "passage": "Your name is Megha. You live near Jubilee Hills in Hyderabad. Every morning at six, you jog four laps around the local public park. You are refreshed today because the municipality recently paved a dedicated rubber track that is easy on the knees. Although you noticed a lot of stray puppies near the entrance, you managed to finish your five-kilometer run without stopping. Even though you must rush to get ready for your day, you typically spend ten minutes doing breathing exercises on the lawn.",
+    "questions": [
+      {
+        "q": "At what time do you jog in the morning?",
+        "modelAnswer": "I jog at six in the morning.",
+        "keywords": [
+          [
+            "six",
+            "6"
+          ]
+        ]
+      },
+      {
+        "q": "Why are you refreshed today?",
+        "modelAnswer": "I am refreshed because the municipality paved a rubber track that is easy on the knees.",
+        "keywords": [
+          [
+            "rubber",
+            "track"
+          ],
+          [
+            "knees",
+            "knee",
+            "paved"
+          ]
+        ]
+      },
+      {
+        "q": "How many kilometers did you run today?",
+        "modelAnswer": "I ran five kilometers today.",
+        "keywords": [
+          [
+            "five",
+            "5"
+          ]
+        ]
+      },
+      {
+        "q": "What do you typically do on the lawn before leaving?",
+        "modelAnswer": "I typically spend ten minutes doing breathing exercises on the lawn.",
+        "keywords": [
+          [
+            "breathing"
+          ],
+          [
+            "exercise",
+            "exercises"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "L3",
+    "title": "Public Library (Weekend Study)",
+    "passage": "Your name is Arvind. You reside in Chennai. You visit the district public library every Saturday afternoon to read magazines and study quietly. You are satisfied today because you secured a desk by the large corner window with plenty of natural sunlight. Although you noticed the air conditioner on the second floor was making a strange noise, you finished reading three chapters of your economics book. While you need to return two novels by Monday, you normally enjoy strolling to a nearby tea stall for ginger biscuits.",
+    "questions": [
+      {
+        "q": "Where do you go every Saturday afternoon?",
+        "modelAnswer": "I go to the district public library every Saturday afternoon.",
+        "keywords": [
+          [
+            "library"
+          ]
+        ]
+      },
+      {
+        "q": "Why are you satisfied today?",
+        "modelAnswer": "I am satisfied because I secured a desk by the large corner window with plenty of natural sunlight.",
+        "keywords": [
+          [
+            "desk",
+            "window",
+            "seat"
+          ],
+          [
+            "sunlight",
+            "sun",
+            "light",
+            "corner"
+          ]
+        ]
+      },
+      {
+        "q": "How many chapters of your economics book did you finish?",
+        "modelAnswer": "I finished three chapters of my economics book.",
+        "keywords": [
+          [
+            "three",
+            "3"
+          ]
+        ]
+      },
+      {
+        "q": "What snack do you normally get from the nearby tea stall?",
+        "modelAnswer": "I normally get ginger biscuits.",
+        "keywords": [
+          [
+            "ginger"
+          ],
+          [
+            "biscuits",
+            "biscuit"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "L4",
+    "title": "Coffee Shop (Casual Catch-Up)",
+    "passage": "Your name is Snehal. You live in Pune. On Sunday mornings, you meet your childhood friend at the corner cafe near the university. Today, you ordered a hot cappuccino and an almond pastry. You are joyful today because your friend brought you a vintage fountain pen as a souvenir from her recent trip to Japan. Even though the cafe became very noisy after noon, you had a pleasant two-hour conversation. While you need to run laundry later, you usually enjoy reading graphic novels in the afternoon.",
+    "questions": [
+      {
+        "q": "What did you order to eat and drink today?",
+        "modelAnswer": "I ordered a hot cappuccino and an almond pastry.",
+        "keywords": [
+          [
+            "cappuccino"
+          ],
+          [
+            "almond",
+            "pastry"
+          ]
+        ]
+      },
+      {
+        "q": "Where did your friend travel to recently?",
+        "modelAnswer": "My friend traveled to Japan recently.",
+        "keywords": [
+          [
+            "japan"
+          ]
+        ]
+      },
+      {
+        "q": "Why are you joyful today?",
+        "modelAnswer": "I am joyful because my friend brought me a vintage fountain pen as a souvenir.",
+        "keywords": [
+          [
+            "fountain pen",
+            "pen"
+          ],
+          [
+            "souvenir",
+            "gift",
+            "brought"
+          ]
+        ]
+      },
+      {
+        "q": "What do you usually do in the afternoon on Sundays?",
+        "modelAnswer": "I usually enjoy reading graphic novels in the afternoon.",
+        "keywords": [
+          [
+            "graphic novels",
+            "graphic novel",
+            "comics"
+          ],
+          [
+            "read",
+            "reading"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "L5",
+    "title": "Community Fitness Center (Gym)",
+    "passage": "Your name is Deepak. You live in Kochi. You attend workout sessions at the local gym four days a week after work. You feel motivated today because you increased your bench press weight to seventy kilograms for the first time. Although the gym was quite crowded with university students, your trainer helped you complete all four sets safely. While your shoulders feel sore this evening, you generally prefer having a glass of fresh banana smoothie before taking a warm shower.",
+    "questions": [
+      {
+        "q": "How many days a week do you go to the gym?",
+        "modelAnswer": "I go to the gym four days a week.",
+        "keywords": [
+          [
+            "four",
+            "4"
+          ]
+        ]
+      },
+      {
+        "q": "What personal milestone did you reach on the bench press today?",
+        "modelAnswer": "I increased my bench press weight to seventy kilograms for the first time.",
+        "keywords": [
+          [
+            "seventy",
+            "70"
+          ]
+        ]
+      },
+      {
+        "q": "Why was the gym crowded today?",
+        "modelAnswer": "The gym was crowded with university students.",
+        "keywords": [
+          [
+            "university",
+            "college",
+            "students"
+          ]
+        ]
+      },
+      {
+        "q": "What do you generally drink before taking a warm shower?",
+        "modelAnswer": "I generally drink a glass of fresh banana smoothie.",
+        "keywords": [
+          [
+            "banana"
+          ],
+          [
+            "smoothie"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "L6",
+    "title": "Corporate Office (Monday Morning Stand-Up)",
+    "passage": "Your name is Varun. You work as an associate software tester in an IT park in Gurugram. Every Monday at nine o'clock, you attend the project stand-up meeting with your product manager. You are relieved today because the critical bug you reported on the customer billing portal was resolved over the weekend. Although your team has three back-to-back client demos this afternoon, you usually step out to the office cafeteria around noon to have lunch with the design team.",
+    "questions": [
+      {
+        "q": "What is your role at the IT company?",
+        "modelAnswer": "I work as an associate software tester.",
+        "keywords": [
+          [
+            "software tester",
+            "tester",
+            "testing"
+          ]
+        ]
+      },
+      {
+        "q": "At what time is your Monday stand-up meeting held?",
+        "modelAnswer": "My Monday stand-up meeting is held at nine o'clock.",
+        "keywords": [
+          [
+            "nine",
+            "9"
+          ]
+        ]
+      },
+      {
+        "q": "Why are you relieved today?",
+        "modelAnswer": "I am relieved because the critical bug I reported on the customer billing portal was resolved over the weekend.",
+        "keywords": [
+          [
+            "bug"
+          ],
+          [
+            "resolved",
+            "fixed",
+            "solved"
+          ]
+        ]
+      },
+      {
+        "q": "Who do you usually have lunch with at the cafeteria?",
+        "modelAnswer": "I usually have lunch with the design team.",
+        "keywords": [
+          [
+            "design"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "L7",
+    "title": "Office Breakroom (Coffee Machine Talk)",
+    "passage": "Your name is Ananya. You work as an HR coordinator in Mumbai. During the mid-afternoon break, you met your department supervisor at the water dispenser. You are pleased today because management approved your proposal to organize a wellness yoga workshop for employees next month. Although your supervisor reminded you to collect quotes from three certified instructors, you enjoyed sharing home-baked brownies with your desk mates. While you have emails to dispatch, you usually take a brisk five-minute walk around the lobby to clear your mind.",
+    "questions": [
+      {
+        "q": "What is your job title in Mumbai?",
+        "modelAnswer": "I work as an HR coordinator.",
+        "keywords": [
+          [
+            "hr",
+            "human resources"
+          ],
+          [
+            "coordinator"
+          ]
+        ]
+      },
+      {
+        "q": "Which employee workshop proposal was approved today?",
+        "modelAnswer": "My proposal to organize a wellness yoga workshop was approved today.",
+        "keywords": [
+          [
+            "yoga",
+            "wellness"
+          ],
+          [
+            "workshop"
+          ]
+        ]
+      },
+      {
+        "q": "What snack did you share with your desk mates?",
+        "modelAnswer": "I shared home-baked brownies with my desk mates.",
+        "keywords": [
+          [
+            "brownies",
+            "brownie"
+          ]
+        ]
+      },
+      {
+        "q": "What do you usually do in the lobby to clear your mind?",
+        "modelAnswer": "I usually take a brisk five-minute walk around the lobby.",
+        "keywords": [
+          [
+            "walk",
+            "walking"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "L8",
+    "title": "Conference Room (Client Presentation)",
+    "passage": "Your name is Sameer. You work as a business analyst in Noida. This morning, you delivered a thirty-minute slide deck presentation to an Australian retail client in Conference Room B. You feel accomplished today because the client agreed to renew their service agreement for another six months without bargaining. Although your presentation remote stopped functioning halfway through the meeting, you continued speaking smoothly without panic. While you must file the minutes of the meeting by five, you normally unwind by playing mobile chess.",
+    "questions": [
+      {
+        "q": "In which conference room did you give your presentation?",
+        "modelAnswer": "I gave my presentation in Conference Room B.",
+        "keywords": [
+          [
+            "b",
+            "be",
+            "bee"
+          ]
+        ]
+      },
+      {
+        "q": "Why do you feel accomplished today?",
+        "modelAnswer": "I feel accomplished because the client agreed to renew their service agreement for another six months without bargaining.",
+        "keywords": [
+          [
+            "renew",
+            "renewed",
+            "agreement",
+            "contract"
+          ]
+        ]
+      },
+      {
+        "q": "What technical issue occurred during your presentation?",
+        "modelAnswer": "My presentation remote stopped working halfway through the meeting.",
+        "keywords": [
+          [
+            "remote"
+          ],
+          [
+            "stopped",
+            "stop",
+            "not working",
+            "failed"
+          ]
+        ]
+      },
+      {
+        "q": "How do you normally unwind after work?",
+        "modelAnswer": "I normally unwind by playing mobile chess.",
+        "keywords": [
+          [
+            "chess"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "L9",
+    "title": "IT Helpdesk (Hardware Replacement)",
+    "passage": "Your name is Tanvi. You work at a technology support desk in Kolkata. Around ten this morning, an employee from the finance team brought in a laptop that suffered coffee spill damage. You are glad today because you safely extracted all financial spreadsheets from the hard drive before replacing the motherboard. Even though you had to process three additional warranty tickets before lunch, the finance manager sent an email commending your fast service. While you have inventory audits later, you usually enjoy listening to retro music during your breaks.",
+    "questions": [
+      {
+        "q": "Which department did the employee with the damaged laptop belong to?",
+        "modelAnswer": "The employee belonged to the finance team.",
+        "keywords": [
+          [
+            "finance"
+          ]
+        ]
+      },
+      {
+        "q": "What caused the laptop damage?",
+        "modelAnswer": "The laptop was damaged by a coffee spill.",
+        "keywords": [
+          [
+            "coffee"
+          ],
+          [
+            "spill",
+            "spilled"
+          ]
+        ]
+      },
+      {
+        "q": "What critical data did you successfully save today?",
+        "modelAnswer": "I safely saved all the financial spreadsheets from the hard drive.",
+        "keywords": [
+          [
+            "spreadsheets",
+            "spreadsheet",
+            "financial",
+            "data"
+          ]
+        ]
+      },
+      {
+        "q": "What kind of music do you listen to during your breaks?",
+        "modelAnswer": "I usually listen to retro music during my breaks.",
+        "keywords": [
+          [
+            "retro",
+            "old"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "L10",
+    "title": "Office Reception (Visitor Management)",
+    "passage": "Your name is Rajesh. You work as a front desk executive at a corporate headquarters in Ahmedabad. Every morning, you issue security badges and verify identity documents for visiting contractors. You are cheerful today because the company rolled out a digital badge scanner that cut visitor check-in queues in half. Although an overseas vendor arrived an hour earlier than scheduled, you arranged coffee for him in the executive lounge. While you must balance the visitor ledger by evening, you typically spend your bus ride home solving math puzzles.",
+    "questions": [
+      {
+        "q": "What is your position at the corporate headquarters?",
+        "modelAnswer": "I am a front desk executive.",
+        "keywords": [
+          [
+            "front desk"
+          ],
+          [
+            "executive"
+          ]
+        ]
+      },
+      {
+        "q": "Why are you cheerful today?",
+        "modelAnswer": "I am cheerful because the company rolled out a digital badge scanner that cut visitor check-in queues in half.",
+        "keywords": [
+          [
+            "scanner",
+            "badge"
+          ],
+          [
+            "queues",
+            "queue",
+            "half"
+          ]
+        ]
+      },
+      {
+        "q": "Where did you seat the early visitor?",
+        "modelAnswer": "I seated the early visitor in the executive lounge.",
+        "keywords": [
+          [
+            "lounge"
+          ]
+        ]
+      },
+      {
+        "q": "What do you typically do on your bus ride home?",
+        "modelAnswer": "I typically solve math puzzles on my bus ride home.",
+        "keywords": [
+          [
+            "math",
+            "puzzles",
+            "puzzle"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "L11",
+    "title": "International Airport (Security Checkpoint)",
+    "passage": "Your name is Priya. You are traveling from Delhi to London for a two-week training seminar. At the international terminal, you placed your cabin bag, laptop, and winter jacket into plastic bins for X-ray screening. You are relieved today because you cleared the security check in less than ten minutes despite the morning rush. Although your boarding gate was changed from Gate 12 to Gate 45 at the far end of the terminal, you have ample time before departure. While waiting to board, you usually prefer browsing travel magazines at the duty-free shop.",
+    "questions": [
+      {
+        "q": "Where are you traveling to from Delhi?",
+        "modelAnswer": "I am traveling to London.",
+        "keywords": [
+          [
+            "london"
+          ]
+        ]
+      },
+      {
+        "q": "Which gate was your flight moved to?",
+        "modelAnswer": "My flight was moved to Gate 45.",
+        "keywords": [
+          [
+            "45",
+            "forty five",
+            "forty-five"
+          ]
+        ]
+      },
+      {
+        "q": "How long did it take you to clear security today?",
+        "modelAnswer": "It took me less than ten minutes to clear security.",
+        "keywords": [
+          [
+            "ten",
+            "10"
+          ]
+        ]
+      },
+      {
+        "q": "What do you usually browse while waiting at the airport?",
+        "modelAnswer": "I usually browse travel magazines at the duty-free shop.",
+        "keywords": [
+          [
+            "magazines",
+            "magazine"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "L12",
+    "title": "Airport Baggage Claim (Lost Luggage Relief)",
+    "passage": "Your name is Nikhil. You just arrived at the terminal in Hyderabad after a long flight from Dubai. You stood beside baggage belt number four waiting for your two red suitcases. You are delighted today because your bags were among the first ten pieces offloaded onto the conveyor, completely undamaged. Although the customs declaration line was moving slowly due to manual passport stamps, you exited the terminal within twenty minutes. While you need to book an airport taxi, you typically like messaging your mother the moment you step outside.",
+    "questions": [
+      {
+        "q": "Where did you fly from before landing in Hyderabad?",
+        "modelAnswer": "I flew from Dubai.",
+        "keywords": [
+          [
+            "dubai"
+          ]
+        ]
+      },
+      {
+        "q": "Which baggage belt were you waiting beside?",
+        "modelAnswer": "I was waiting beside baggage belt number four.",
+        "keywords": [
+          [
+            "four",
+            "4"
+          ]
+        ]
+      },
+      {
+        "q": "Why are you delighted today?",
+        "modelAnswer": "I am delighted because my bags were among the first ten offloaded and were completely undamaged.",
+        "keywords": [
+          [
+            "bags",
+            "suitcases",
+            "luggage"
+          ],
+          [
+            "first",
+            "undamaged",
+            "damage"
+          ]
+        ]
+      },
+      {
+        "q": "Who do you usually message as soon as you exit the terminal?",
+        "modelAnswer": "I usually message my mother.",
+        "keywords": [
+          [
+            "mother",
+            "mom",
+            "mum"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "L13",
+    "title": "Railway Platform (Morning Express)",
+    "passage": "Your name is Harish. You commute every Tuesday from Vijayawada to Guntur by the morning intercity express. Today, you arrived at platform number one fifteen minutes before the scheduled departure time. You feel happy today because the railway ticket examiner confirmed your window seat reservation without any difficulty. Although the train was briefly halted at an outer signal for ten minutes, it reached your destination right on schedule. While you must head directly to your workplace, you usually buy a small carton of spiced buttermilk at the station exit.",
+    "questions": [
+      {
+        "q": "Between which two cities do you commute on Tuesdays?",
+        "modelAnswer": "I commute between Vijayawada and Guntur.",
+        "keywords": [
+          [
+            "vijayawada"
+          ],
+          [
+            "guntur"
+          ]
+        ]
+      },
+      {
+        "q": "At which platform did you arrive this morning?",
+        "modelAnswer": "I arrived at platform number one.",
+        "keywords": [
+          [
+            "one",
+            "1"
+          ]
+        ]
+      },
+      {
+        "q": "Why do you feel happy today?",
+        "modelAnswer": "I feel happy because the ticket examiner confirmed my window seat reservation without any difficulty.",
+        "keywords": [
+          [
+            "window",
+            "seat"
+          ],
+          [
+            "confirmed",
+            "reservation",
+            "ticket"
+          ]
+        ]
+      },
+      {
+        "q": "What drink do you usually purchase at the station exit?",
+        "modelAnswer": "I usually buy a small carton of spiced buttermilk.",
+        "keywords": [
+          [
+            "buttermilk",
+            "butter milk"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "L14",
+    "title": "Metro Rail Station (Card Recharge)",
+    "passage": "Your name is Divya. You live in Bengaluru and rely on the metro train to reach your workplace in Whitefield. At the station entrance, you tapped your smart card and realized the balance was low. You are satisfied today because the newly installed automated kiosk allowed you to recharge your card via mobile UPI in under thirty seconds. Although the morning train was packed with passengers, you managed to secure a seat after three stops. Even though you have a busy shift ahead, you usually pass your commute time listening to true-crime podcasts.",
+    "questions": [
+      {
+        "q": "Which station line or area do you travel to for work?",
+        "modelAnswer": "I travel to Whitefield for work.",
+        "keywords": [
+          [
+            "whitefield"
+          ]
+        ]
+      },
+      {
+        "q": "How did you recharge your smart card at the kiosk?",
+        "modelAnswer": "I recharged my smart card through mobile UPI at the automated kiosk.",
+        "keywords": [
+          [
+            "upi"
+          ],
+          [
+            "mobile",
+            "kiosk",
+            "phone"
+          ]
+        ]
+      },
+      {
+        "q": "Why are you satisfied today?",
+        "modelAnswer": "I am satisfied because the new automated kiosk let me recharge my card in under thirty seconds.",
+        "keywords": [
+          [
+            "kiosk",
+            "automated"
+          ],
+          [
+            "recharge",
+            "thirty",
+            "seconds",
+            "quick"
+          ]
+        ]
+      },
+      {
+        "q": "What kind of podcasts do you listen to during your metro commute?",
+        "modelAnswer": "I listen to true-crime podcasts during my commute.",
+        "keywords": [
+          [
+            "crime"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "L15",
+    "title": "Bus Terminal (Weekend Trip)",
+    "passage": "Your name is Manoj. You live in Visakhapatnam. This Friday evening, you arrived at the central bus depot to board an air-conditioned bus to your native village. You are glad today because your online ticket booking spared you from standing in the long weekend booking counter queue. Although the bus driver had to take a detour due to highway resurfacing work, the ride was remarkably smooth. While you must unpack your clothing upon arrival, you normally enjoy drinking hot tomato soup during the midnight highway stop.",
+    "questions": [
+      {
+        "q": "Where do you live?",
+        "modelAnswer": "I live in Visakhapatnam.",
+        "keywords": [
+          [
+            "visakhapatnam",
+            "vizag"
+          ]
+        ]
+      },
+      {
+        "q": "What spared you from the long queues at the bus depot today?",
+        "modelAnswer": "My online ticket booking spared me from the long queue.",
+        "keywords": [
+          [
+            "online"
+          ],
+          [
+            "ticket",
+            "booking",
+            "booked"
+          ]
+        ]
+      },
+      {
+        "q": "Why did the bus have to take a detour?",
+        "modelAnswer": "The bus had to take a detour due to highway resurfacing work.",
+        "keywords": [
+          [
+            "highway",
+            "resurfacing",
+            "road"
+          ]
+        ]
+      },
+      {
+        "q": "What beverage do you normally drink during the midnight stop?",
+        "modelAnswer": "I normally drink hot tomato soup during the midnight stop.",
+        "keywords": [
+          [
+            "tomato"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "L16",
+    "title": "Local Pharmacy (Medicine Refill)",
+    "passage": "Your name is Archana. You live in Mysore. Yesterday evening, you visited the corner medical store with a prescription from your mother's physician. You are relieved today because the pharmacist stocked the exact brand of imported blood pressure tablets your mother needed. Although the electronic payment machine took two attempts to process your debit card, the shop assistant packaged everything neatly in an eco-friendly paper bag. While you have dinner to prepare, you generally prefer listening to classical instrumental music in the evening.",
+    "questions": [
+      {
+        "q": "Whose medical prescription did you take to the pharmacy?",
+        "modelAnswer": "I took my mother's prescription to the pharmacy.",
+        "keywords": [
+          [
+            "mother",
+            "mom",
+            "mum"
+          ]
+        ]
+      },
+      {
+        "q": "Why are you relieved today?",
+        "modelAnswer": "I am relieved because the pharmacist had the exact brand of imported blood pressure tablets my mother needed.",
+        "keywords": [
+          [
+            "blood pressure",
+            "bp"
+          ],
+          [
+            "tablets",
+            "tablet",
+            "medicine",
+            "brand"
+          ]
+        ]
+      },
+      {
+        "q": "What issue occurred while making the payment?",
+        "modelAnswer": "The payment machine took two attempts to process my debit card.",
+        "keywords": [
+          [
+            "payment",
+            "machine",
+            "card"
+          ],
+          [
+            "two",
+            "twice",
+            "attempts",
+            "attempt"
+          ]
+        ]
+      },
+      {
+        "q": "What kind of music do you generally listen to in the evening?",
+        "modelAnswer": "I generally listen to classical instrumental music in the evening.",
+        "keywords": [
+          [
+            "classical",
+            "instrumental"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "L17",
+    "title": "Departmental Store (Clothing Exchange)",
+    "passage": "Your name is Rohit. You live in Chandigarh. On Saturday, you visited a clothing store in the central mall to exchange a formal shirt you received as a birthday gift. You are cheerful today because the floor manager allowed you to swap the oversized blue shirt for a well-fitted olive-green shirt without charging any handling fee. Although the trial room queue had six people waiting ahead of you, the billing counter cleared your exchange in two minutes. While you need to clean your apartment later, you usually enjoy browsing bookstore aisles on weekends.",
+    "questions": [
+      {
+        "q": "Why did you visit the clothing store on Saturday?",
+        "modelAnswer": "I visited the store to exchange a formal shirt I received as a birthday gift.",
+        "keywords": [
+          [
+            "exchange",
+            "swap",
+            "change"
+          ],
+          [
+            "shirt"
+          ]
+        ]
+      },
+      {
+        "q": "What color was the replacement shirt you chose?",
+        "modelAnswer": "The replacement shirt was olive green.",
+        "keywords": [
+          [
+            "olive"
+          ]
+        ]
+      },
+      {
+        "q": "Why are you cheerful today?",
+        "modelAnswer": "I am cheerful because the floor manager let me swap the oversized shirt without charging any handling fee.",
+        "keywords": [
+          [
+            "swap",
+            "exchange",
+            "exchanged",
+            "swapped"
+          ],
+          [
+            "fee",
+            "charge",
+            "manager",
+            "free"
+          ]
+        ]
+      },
+      {
+        "q": "What aisles do you usually like browsing on weekends?",
+        "modelAnswer": "I usually enjoy browsing bookstore aisles on weekends.",
+        "keywords": [
+          [
+            "bookstore",
+            "book store",
+            "books"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "L18",
+    "title": "Electronics Repair Shop (Smartphone Fix)",
+    "passage": "Your name is Bhavana. You live in Jaipur. Yesterday, your smartphone screen went completely blank after slipping from your hands onto the tile floor. You visited an authorized repair center on Station Road this morning. You are overjoyed today because the technician identified a simple loose display cable and fixed it within twenty minutes without requiring an expensive screen replacement. Although you had to wait in a warm reception area, you saved significant money. While you must finish office emails, you usually relax by solving crossword puzzles.",
+    "questions": [
+      {
+        "q": "What happened to your smartphone screen yesterday?",
+        "modelAnswer": "My smartphone screen went completely blank after it slipped onto the tile floor.",
+        "keywords": [
+          [
+            "blank"
+          ],
+          [
+            "slipped",
+            "fell",
+            "dropped",
+            "floor"
+          ]
+        ]
+      },
+      {
+        "q": "Why are you overjoyed today?",
+        "modelAnswer": "I am overjoyed because the technician found a loose display cable and fixed it without an expensive screen replacement.",
+        "keywords": [
+          [
+            "loose",
+            "cable"
+          ],
+          [
+            "fixed",
+            "repair",
+            "repaired",
+            "replacement"
+          ]
+        ]
+      },
+      {
+        "q": "How long did the technician take to fix your phone?",
+        "modelAnswer": "The technician fixed my phone within twenty minutes.",
+        "keywords": [
+          [
+            "twenty",
+            "20"
+          ]
+        ]
+      },
+      {
+        "q": "What do you usually do to relax?",
+        "modelAnswer": "I usually relax by solving crossword puzzles.",
+        "keywords": [
+          [
+            "crossword"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "L19",
+    "title": "Home Kitchen (Baking Day)",
+    "passage": "Your name is Shreya. You reside in Kochi. On Sunday afternoons, you enjoy baking healthy snacks for your family. Today, you experimented with a recipe for little-millet cookies using organic jaggery instead of white sugar. You are delighted today because the cookies baked to a crisp, golden-brown texture without burning at the edges. Although cleaning the sticky dough bowls took nearly half an hour, your younger brother praised the taste. While you have household tasks left, you typically like drinking chamomile tea while sitting on your balcony.",
+    "questions": [
+      {
+        "q": "What kind of cookies did you bake on Sunday?",
+        "modelAnswer": "I baked little-millet cookies.",
+        "keywords": [
+          [
+            "millet"
+          ]
+        ]
+      },
+      {
+        "q": "What ingredient did you use instead of white sugar?",
+        "modelAnswer": "I used organic jaggery instead of white sugar.",
+        "keywords": [
+          [
+            "jaggery"
+          ]
+        ]
+      },
+      {
+        "q": "Why are you delighted today?",
+        "modelAnswer": "I am delighted because the cookies baked crisp and golden brown without burning at the edges.",
+        "keywords": [
+          [
+            "crisp",
+            "golden"
+          ],
+          [
+            "burning",
+            "burn",
+            "burnt",
+            "edges"
+          ]
+        ]
+      },
+      {
+        "q": "What tea do you typically drink on your balcony?",
+        "modelAnswer": "I typically drink chamomile tea on my balcony.",
+        "keywords": [
+          [
+            "chamomile"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "L20",
+    "title": "Auto Garage (Scooter Servicing)",
+    "passage": "Your name is Ashwin. You live in Coimbatore. Every six months, you take your two-wheeler to the local workshop for routine maintenance and an oil change. You are pleased today because the mechanic adjusted your spongy front brakes and cleaned the carburetor without asking for extra labor charges. Although you had to sit on a wooden bench for over an hour while waiting, your scooter ran noticeably smoother on the ride back home. While you have paperwork to file, you normally pass your evening playing carrom with your neighbors.",
+    "questions": [
+      {
+        "q": "How often do you take your two-wheeler for routine maintenance?",
+        "modelAnswer": "I take it for routine maintenance every six months.",
+        "keywords": [
+          [
+            "six months",
+            "six",
+            "6"
+          ]
+        ]
+      },
+      {
+        "q": "What mechanical adjustments did the mechanic make today?",
+        "modelAnswer": "The mechanic adjusted my front brakes and cleaned the carburetor.",
+        "keywords": [
+          [
+            "brakes",
+            "brake"
+          ],
+          [
+            "carburetor",
+            "carburettor"
+          ]
+        ]
+      },
+      {
+        "q": "Why are you pleased today?",
+        "modelAnswer": "I am pleased because the mechanic did not charge extra labor and my scooter ran noticeably smoother.",
+        "keywords": [
+          [
+            "extra",
+            "labor",
+            "labour",
+            "charge"
+          ],
+          [
+            "smoother",
+            "smooth",
+            "brakes"
+          ]
+        ]
+      },
+      {
+        "q": "What game do you normally play with your neighbors in the evening?",
+        "modelAnswer": "I normally play carrom with my neighbors in the evening.",
+        "keywords": [
+          [
+            "carrom",
+            "carom"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "L21",
+    "title": "Botanical Garden (Weekend Stroll)",
+    "passage": "Your name is Nalini. You live in Ooty. On Saturday mornings, you take a quiet walk through the government botanical gardens to take photographs of flowering plants. You are joyful today because the annual rose exhibition opened today with over two hundred rare hybrid varieties on display. Although sudden morning mist made the stone walkways slippery, you managed to capture clear pictures of yellow roses. While you must edit your photo album tonight, you generally enjoy eating roasted corn by the lakeside.",
+    "questions": [
+      {
+        "q": "Where do you go for a quiet walk on Saturday mornings?",
+        "modelAnswer": "I take a quiet walk through the government botanical gardens.",
+        "keywords": [
+          [
+            "botanical",
+            "garden",
+            "gardens"
+          ]
+        ]
+      },
+      {
+        "q": "Why are you joyful today?",
+        "modelAnswer": "I am joyful because the annual rose exhibition opened today with over two hundred rare hybrid varieties.",
+        "keywords": [
+          [
+            "rose"
+          ],
+          [
+            "exhibition",
+            "opened",
+            "hybrid",
+            "200",
+            "two hundred"
+          ]
+        ]
+      },
+      {
+        "q": "What made the walkways slippery this morning?",
+        "modelAnswer": "The sudden morning mist made the walkways slippery.",
+        "keywords": [
+          [
+            "mist",
+            "fog",
+            "misty"
+          ]
+        ]
+      },
+      {
+        "q": "What snack do you generally eat by the lakeside?",
+        "modelAnswer": "I generally eat roasted corn by the lakeside.",
+        "keywords": [
+          [
+            "corn"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "L22",
+    "title": "City Zoo (Family Visit)",
+    "passage": "Your name is Suresh. You live in Visakhapatnam. Last Sunday, you accompanied your ten-year-old nephew to the Indira Gandhi Zoological Park. You are happy today because your nephew finally saw the royal Bengal tigers awake and roaming near the water moat rather than sleeping inside the den. Although you had to walk nearly six kilometers across the hilly terrain, the weather remained pleasantly overcast. While your feet feel tired this evening, you usually enjoy watching wildlife documentaries on television.",
+    "questions": [
+      {
+        "q": "Who accompanied you to the zoological park last Sunday?",
+        "modelAnswer": "My ten-year-old nephew accompanied me.",
+        "keywords": [
+          [
+            "nephew"
+          ]
+        ]
+      },
+      {
+        "q": "Why are you happy today?",
+        "modelAnswer": "I am happy because my nephew saw the royal Bengal tigers awake and roaming near the water moat.",
+        "keywords": [
+          [
+            "tiger",
+            "tigers"
+          ],
+          [
+            "awake",
+            "roaming",
+            "moat",
+            "saw",
+            "seen"
+          ]
+        ]
+      },
+      {
+        "q": "What was the weather like during your visit?",
+        "modelAnswer": "The weather was pleasantly overcast.",
+        "keywords": [
+          [
+            "overcast",
+            "cloudy",
+            "pleasant"
+          ]
+        ]
+      },
+      {
+        "q": "What type of television shows do you usually watch?",
+        "modelAnswer": "I usually watch wildlife documentaries on television.",
+        "keywords": [
+          [
+            "wildlife"
+          ],
+          [
+            "documentaries",
+            "documentary"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "L23",
+    "title": "Beach Promenade (Sunset Walk)",
+    "passage": "Your name is Kavyashree. You live near the coastline in Mangaluru. Every Friday evening at sunset, you walk barefoot along the sandy beach for forty minutes. You feel peaceful today because the cool sea breeze and rhythmic ocean waves relieved all your work-related tension. Although a sudden high tide forced you to move higher up the sandbank, you watched a beautiful orange sunset behind the horizon. While you have grocery shopping planned later, you usually enjoy drinking sweet coconut water from a roadside cart.",
+    "questions": [
+      {
+        "q": "How long do you walk along the beach on Friday evenings?",
+        "modelAnswer": "I walk along the beach for forty minutes.",
+        "keywords": [
+          [
+            "forty",
+            "40"
+          ]
+        ]
+      },
+      {
+        "q": "Why do you feel peaceful today?",
+        "modelAnswer": "I feel peaceful because the cool sea breeze and rhythmic ocean waves relieved my work-related tension.",
+        "keywords": [
+          [
+            "breeze",
+            "waves",
+            "sea"
+          ],
+          [
+            "tension",
+            "stress",
+            "relieved",
+            "relaxed"
+          ]
+        ]
+      },
+      {
+        "q": "Why did you have to move higher up the sandbank?",
+        "modelAnswer": "A sudden high tide forced me to move higher up the sandbank.",
+        "keywords": [
+          [
+            "tide"
+          ]
+        ]
+      },
+      {
+        "q": "What do you usually drink from the roadside cart?",
+        "modelAnswer": "I usually drink sweet coconut water from a roadside cart.",
+        "keywords": [
+          [
+            "coconut"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "L24",
+    "title": "Community Hall (Wedding Reception)",
+    "passage": "Your name is Tarun. You live in Tirupati. Yesterday evening, you attended your school friend's wedding reception at the community function hall. You are satisfied today because you arrived early enough to secure a convenient parking space near the main gates. Although the dining hall was packed with hundreds of guests, the caterers served hot paneer butter masala and butter naan promptly. While you had a long drive back home late at night, you normally like listening to devotional music on your car stereo.",
+    "questions": [
+      {
+        "q": "Whose wedding reception did you attend yesterday evening?",
+        "modelAnswer": "I attended my school friend's wedding reception.",
+        "keywords": [
+          [
+            "friend"
+          ],
+          [
+            "wedding",
+            "reception"
+          ]
+        ]
+      },
+      {
+        "q": "Why are you satisfied today?",
+        "modelAnswer": "I am satisfied because I arrived early and secured a convenient parking space near the main gates.",
+        "keywords": [
+          [
+            "parking",
+            "park"
+          ],
+          [
+            "early",
+            "gates",
+            "gate",
+            "space"
+          ]
+        ]
+      },
+      {
+        "q": "What dishes were served promptly at the reception?",
+        "modelAnswer": "Hot paneer butter masala and butter naan were served promptly.",
+        "keywords": [
+          [
+            "paneer"
+          ],
+          [
+            "naan",
+            "butter"
+          ]
+        ]
+      },
+      {
+        "q": "What kind of music do you listen to on your car stereo?",
+        "modelAnswer": "I normally listen to devotional music on my car stereo.",
+        "keywords": [
+          [
+            "devotional"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "L25",
+    "title": "Indoor Badminton Court (Evening Match)",
+    "passage": "Your name is Pranav. You reside in Vijayawada. Every weekday evening, you play doubles badminton matches with your former college batchmates at the indoor sports complex. You are thrilled today because you and your court partner won two straight sets against the club's defending champions. Although your partner slightly twisted his ankle in the final game, he was able to walk off the court without medical assistance. While your muscles feel fatigued, you usually drink a tall glass of tender coconut water before dinner.",
+    "questions": [
+      {
+        "q": "What game do you play with your batchmates on weekday evenings?",
+        "modelAnswer": "I play doubles badminton with my batchmates.",
+        "keywords": [
+          [
+            "badminton"
+          ]
+        ]
+      },
+      {
+        "q": "Why are you thrilled today?",
+        "modelAnswer": "I am thrilled because my partner and I won two straight sets against the defending champions.",
+        "keywords": [
+          [
+            "won",
+            "win",
+            "straight sets"
+          ],
+          [
+            "champions",
+            "sets",
+            "champion"
+          ]
+        ]
+      },
+      {
+        "q": "What minor mishap happened to your partner during the match?",
+        "modelAnswer": "My partner slightly twisted his ankle in the final game.",
+        "keywords": [
+          [
+            "ankle"
+          ]
+        ]
+      },
+      {
+        "q": "What do you usually drink before dinner?",
+        "modelAnswer": "I usually drink a tall glass of tender coconut water before dinner.",
+        "keywords": [
+          [
+            "coconut"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "L26",
+    "title": "Postal Office (Speed Post Parcel)",
+    "passage": "Your name is Madhav. You live in Rajahmundry. This morning, you went to the head post office to dispatch an urgent set of certified educational certificates to a university abroad. You are relieved today because the postal counter clerk processed your speed-post envelope and provided an online tracking number in just five minutes. Although the waiting hall fan was not working, you did not have to stand in a queue. While you have errands to complete, you normally like reading regional newspapers at the verandah.",
+    "questions": [
+      {
+        "q": "What documents were inside the envelope you mailed today?",
+        "modelAnswer": "I mailed certified educational certificates.",
+        "keywords": [
+          [
+            "certificates",
+            "certificate"
+          ]
+        ]
+      },
+      {
+        "q": "Why are you relieved today?",
+        "modelAnswer": "I am relieved because the clerk processed my speed-post envelope and gave me an online tracking number in just five minutes.",
+        "keywords": [
+          [
+            "tracking",
+            "speed post",
+            "speed-post"
+          ],
+          [
+            "five",
+            "5",
+            "minutes"
+          ]
+        ]
+      },
+      {
+        "q": "What inconvenience was noted in the waiting hall?",
+        "modelAnswer": "The waiting hall fan was not working.",
+        "keywords": [
+          [
+            "fan"
+          ]
+        ]
+      },
+      {
+        "q": "What do you normally do on your verandah?",
+        "modelAnswer": "I normally read regional newspapers on the verandah.",
+        "keywords": [
+          [
+            "newspaper",
+            "newspapers"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "L27",
+    "title": "Bank Branch (Passbook Update)",
+    "passage": "Your name is Geetha. You live in Warangal. Yesterday, you visited your local nationalized bank branch to update your savings account passbook and activate internet banking. You are pleased today because the customer service desk clerk helped you set up your two-factor security pin on your mobile phone without making you fill out long paperwork. Although the automated passbook printing kiosk outside was out of ink, the counter staff printed your statement manually. While you must head home, you usually like sipping ginger tea while watching evening news.",
+    "questions": [
+      {
+        "q": "Which two tasks did you visit the bank to complete?",
+        "modelAnswer": "I visited the bank to update my passbook and activate internet banking.",
+        "keywords": [
+          [
+            "passbook"
+          ],
+          [
+            "internet banking",
+            "online banking",
+            "net banking"
+          ]
+        ]
+      },
+      {
+        "q": "Why are you pleased today?",
+        "modelAnswer": "I am pleased because the clerk helped me set up my two-factor security pin on my mobile phone without long paperwork.",
+        "keywords": [
+          [
+            "pin",
+            "security",
+            "two factor",
+            "two-factor"
+          ],
+          [
+            "paperwork",
+            "mobile",
+            "clerk",
+            "helped"
+          ]
+        ]
+      },
+      {
+        "q": "Why did the counter staff have to print your statement manually?",
+        "modelAnswer": "The automated passbook printing kiosk was out of ink, so the staff printed my statement manually.",
+        "keywords": [
+          [
+            "ink"
+          ]
+        ]
+      },
+      {
+        "q": "What do you usually do in the evening while sipping ginger tea?",
+        "modelAnswer": "I usually watch the evening news while sipping ginger tea.",
+        "keywords": [
+          [
+            "news"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "L28",
+    "title": "Dental Clinic (Routine Checkup)",
+    "passage": "Your name is Alok. You live in Lucknow. Yesterday afternoon, you visited your family dentist for your annual teeth cleaning and oral examination. You are glad today because the dentist confirmed that your gums are perfectly healthy and found no dental cavities. Although the sound of the ultrasonic scaler made you slightly nervous at first, the entire procedure took less than fifteen minutes without any pain. While you are instructed to avoid colored drinks for a day, you generally like having a bowl of warm vegetable soup for dinner.",
+    "questions": [
+      {
+        "q": "Why did you visit the dentist yesterday?",
+        "modelAnswer": "I visited the dentist for my annual teeth cleaning and oral examination.",
+        "keywords": [
+          [
+            "cleaning",
+            "examination",
+            "checkup",
+            "check-up"
+          ]
+        ]
+      },
+      {
+        "q": "Why are you glad today?",
+        "modelAnswer": "I am glad because the dentist confirmed that my gums are healthy and I have no cavities.",
+        "keywords": [
+          [
+            "gums",
+            "gum",
+            "cavities",
+            "cavity"
+          ],
+          [
+            "healthy",
+            "no",
+            "free"
+          ]
+        ]
+      },
+      {
+        "q": "How long did the cleaning procedure take?",
+        "modelAnswer": "The cleaning procedure took less than fifteen minutes.",
+        "keywords": [
+          [
+            "fifteen",
+            "15"
+          ]
+        ]
+      },
+      {
+        "q": "What food do you generally have for dinner after dental visits?",
+        "modelAnswer": "I generally have a bowl of warm vegetable soup for dinner.",
+        "keywords": [
+          [
+            "soup"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "L29",
+    "title": "Optician's Store (Eye Test & Glasses)",
+    "passage": "Your name is Lavanya. You live in Bhopal. After experiencing mild eye strain while working on your computer, you visited an eye clinic on Mall Road yesterday. You are satisfied today because the optometrist determined that your prescription had not increased and merely suggested an anti-glare coating for your existing spectacles. Although choosing a lightweight frame took nearly forty minutes, the store staff promised delivery by Friday. While you must resume office assignments, you normally relax by watering your rooftop rose plants.",
+    "questions": [
+      {
+        "q": "Why did you visit the eye clinic yesterday?",
+        "modelAnswer": "I visited the eye clinic because I had mild eye strain from working on my computer.",
+        "keywords": [
+          [
+            "eye strain",
+            "strain"
+          ]
+        ]
+      },
+      {
+        "q": "What did the optometrist suggest for your spectacles?",
+        "modelAnswer": "The optometrist suggested an anti-glare coating for my spectacles.",
+        "keywords": [
+          [
+            "anti-glare",
+            "anti glare",
+            "glare",
+            "coating"
+          ]
+        ]
+      },
+      {
+        "q": "How long did it take you to pick a lightweight frame?",
+        "modelAnswer": "It took me nearly forty minutes to pick a lightweight frame.",
+        "keywords": [
+          [
+            "forty",
+            "40"
+          ]
+        ]
+      },
+      {
+        "q": "What do you normally do to relax on your rooftop?",
+        "modelAnswer": "I normally relax by watering my rooftop rose plants.",
+        "keywords": [
+          [
+            "water",
+            "watering"
+          ],
+          [
+            "rose",
+            "roses",
+            "plants"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "L30",
+    "title": "Cinema Theater (Weekend Movie)",
+    "passage": "Your name is Chetan. You live in Guntur. Last night, you went to the local multiplex with your cousins to watch a newly released science fiction thriller. You are excited today because the theater had newly upgraded Dolby sound systems that made the space rocket sequences sound breathtakingly real. Although someone in the front row kept talking loudly during the first half, the security attendant politely asked them to be quiet. While you went to bed past midnight, you usually like sleeping in on Sunday mornings.",
+    "questions": [
+      {
+        "q": "What genre of film did you watch with your cousins last night?",
+        "modelAnswer": "We watched a science fiction thriller.",
+        "keywords": [
+          [
+            "science fiction",
+            "sci-fi",
+            "sci fi"
+          ]
+        ]
+      },
+      {
+        "q": "Why are you excited today?",
+        "modelAnswer": "I am excited because the theater had newly upgraded Dolby sound systems that made the rocket sequences sound breathtakingly real.",
+        "keywords": [
+          [
+            "dolby",
+            "sound"
+          ]
+        ]
+      },
+      {
+        "q": "What distraction occurred during the first half of the film?",
+        "modelAnswer": "Someone in the front row kept talking loudly during the first half.",
+        "keywords": [
+          [
+            "talking",
+            "talk",
+            "noise",
+            "loud",
+            "loudly"
+          ]
+        ]
+      },
+      {
+        "q": "What do you usually like to do on Sunday mornings?",
+        "modelAnswer": "I usually like sleeping in on Sunday mornings.",
+        "keywords": [
+          [
+            "sleep",
+            "sleeping"
+          ]
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,1972 @@
+[
+  {
+    "id": "D1",
+    "title": "Checking into a Hotel",
+    "turns": [
+      {
+        "n": 1,
+        "prompt": "Good afternoon! How can I assist you today?",
+        "response": "Good afternoon, I would like to check in under my name for a three-day stay.",
+        "keywords": [
+          "good",
+          "afternoon",
+          "like",
+          "check",
+          "under",
+          "name",
+          "three",
+          "day",
+          "stay"
+        ]
+      },
+      {
+        "n": 2,
+        "prompt": "May I confirm the room type you reserved?",
+        "response": "I reserved a single room that includes complimentary breakfast.",
+        "keywords": [
+          "reserved",
+          "single",
+          "room",
+          "includes",
+          "complimentary",
+          "breakfast"
+        ]
+      },
+      {
+        "n": 3,
+        "prompt": "Here is your keycard for room 402. Is there anything else you require?",
+        "response": "Could you please share the Wi-Fi password so I can connect my work laptop?",
+        "keywords": [
+          "share",
+          "password",
+          "connect",
+          "work",
+          "laptop"
+        ]
+      },
+      {
+        "n": 4,
+        "prompt": "Certainly, the details are on your key sleeve. Have a pleasant stay with us!",
+        "response": "Thank you very much for your kind help.",
+        "keywords": [
+          "thank",
+          "kind",
+          "help"
+        ]
+      }
+    ],
+    "situation": "You have arrived in Mumbai for a three-day business conference. You booked a single room with breakfast included under your name, and you need the Wi-Fi password for your work laptop."
+  },
+  {
+    "id": "D2",
+    "title": "Opening a New Bank Account",
+    "turns": [
+      {
+        "n": 1,
+        "prompt": "Hello! Welcome to our branch, how may I help you?",
+        "response": "Hello, I would like to open a zero-balance student savings account today.",
+        "keywords": [
+          "hello",
+          "like",
+          "open",
+          "zero",
+          "balance",
+          "student",
+          "savings",
+          "account",
+          "today"
+        ]
+      },
+      {
+        "n": 2,
+        "prompt": "Did you bring the required identification documents with you?",
+        "response": "Yes, I brought my national identity card and my college admission slip as verification.",
+        "keywords": [
+          "yes",
+          "brought",
+          "national",
+          "identity",
+          "card",
+          "college",
+          "admission",
+          "slip",
+          "verification"
+        ]
+      },
+      {
+        "n": 3,
+        "prompt": "Would you also like us to activate internet banking for your account?",
+        "response": "Yes, please activate internet banking along with mobile notifications.",
+        "keywords": [
+          "yes",
+          "activate",
+          "internet",
+          "banking",
+          "along",
+          "mobile",
+          "notifications"
+        ]
+      },
+      {
+        "n": 4,
+        "prompt": "Your application has been processed, and your starter kit will arrive by post.",
+        "response": "Thank you so much for guiding me through the process.",
+        "keywords": [
+          "thank",
+          "guiding",
+          "through",
+          "process"
+        ]
+      }
+    ],
+    "situation": "You are visiting a local bank branch to open a zero-balance student savings account. You brought your national ID card and college admission slip as address verification."
+  },
+  {
+    "id": "D3",
+    "title": "Booking a Train Ticket at the Station",
+    "turns": [
+      {
+        "n": 1,
+        "prompt": "Next in line, please. Where do you want to travel?",
+        "response": "I would like to book one air-conditioned sleeper ticket to Hyderabad for this Friday night.",
+        "keywords": [
+          "like",
+          "book",
+          "one",
+          "air",
+          "conditioned",
+          "sleeper",
+          "ticket",
+          "hyderabad",
+          "friday",
+          "night"
+        ]
+      },
+      {
+        "n": 2,
+        "prompt": "Do you have any specific berth preference for this journey?",
+        "response": "I would prefer a lower berth because I am traveling with heavy luggage.",
+        "keywords": [
+          "prefer",
+          "lower",
+          "berth",
+          "because",
+          "traveling",
+          "heavy",
+          "luggage"
+        ]
+      },
+      {
+        "n": 3,
+        "prompt": "The ticket fare comes to eight hundred and fifty rupees; how will you pay?",
+        "response": "I will pay the amount using my mobile UPI application.",
+        "keywords": [
+          "pay",
+          "amount",
+          "using",
+          "mobile",
+          "upi",
+          "application"
+        ]
+      },
+      {
+        "n": 4,
+        "prompt": "Here is your printed reservation ticket. Wish you a safe journey!",
+        "response": "Thank you very much, have a great day ahead.",
+        "keywords": [
+          "thank",
+          "great",
+          "day",
+          "ahead"
+        ]
+      }
+    ],
+    "situation": "You are at the railway reservation counter to buy an air-conditioned sleeper ticket to Hyderabad for Friday night. You prefer a lower berth because you are traveling with heavy luggage."
+  },
+  {
+    "id": "D4",
+    "title": "Consulting a Doctor for a Cold",
+    "turns": [
+      {
+        "n": 1,
+        "prompt": "Good morning! What seems to be the problem today?",
+        "response": "Good morning doctor, I have been suffering from a dry cough and mild fever for three days.",
+        "keywords": [
+          "good",
+          "morning",
+          "doctor",
+          "suffering",
+          "dry",
+          "cough",
+          "mild",
+          "fever",
+          "three",
+          "days"
+        ]
+      },
+      {
+        "n": 2,
+        "prompt": "Have you taken any medications to reduce the fever?",
+        "response": "I took paracetamol tablets, but they only provided temporary relief.",
+        "keywords": [
+          "took",
+          "paracetamol",
+          "tablets",
+          "only",
+          "provided",
+          "temporary",
+          "relief"
+        ]
+      },
+      {
+        "n": 3,
+        "prompt": "Do you have any known allergies to antibiotics or syrup formulas?",
+        "response": "No, I do not have any known allergies to any medicines.",
+        "keywords": [
+          "known",
+          "allergies",
+          "medicines"
+        ]
+      },
+      {
+        "n": 4,
+        "prompt": "Take these prescribed tablets after meals for five days, and get plenty of rest.",
+        "response": "Thank you doctor, I will follow your advice carefully.",
+        "keywords": [
+          "thank",
+          "doctor",
+          "follow",
+          "advice",
+          "carefully"
+        ]
+      }
+    ],
+    "situation": "You are visiting your family physician because you have had a severe dry cough and mild fever for the past three days. You also mention that paracetamol only gave temporary relief."
+  },
+  {
+    "id": "D5",
+    "title": "Returning an Item at an Electronics Store",
+    "turns": [
+      {
+        "n": 1,
+        "prompt": "Hello! How can our customer support team help you today?",
+        "response": "Hello, I would like to exchange this wireless mouse that I purchased yesterday.",
+        "keywords": [
+          "hello",
+          "like",
+          "exchange",
+          "wireless",
+          "mouse",
+          "purchased",
+          "yesterday"
+        ]
+      },
+      {
+        "n": 2,
+        "prompt": "Could you please explain what issue you are facing with the device?",
+        "response": "The optical sensor does not track properly when used on wooden desks.",
+        "keywords": [
+          "optical",
+          "sensor",
+          "track",
+          "properly",
+          "when",
+          "used",
+          "wooden",
+          "desks"
+        ]
+      },
+      {
+        "n": 3,
+        "prompt": "Do you have the original bill and packaging with you?",
+        "response": "Yes, I have the original tax invoice along with the retail box.",
+        "keywords": [
+          "yes",
+          "original",
+          "tax",
+          "invoice",
+          "along",
+          "retail",
+          "box"
+        ]
+      },
+      {
+        "n": 4,
+        "prompt": "We will swap this with a brand-new tested unit right away.",
+        "response": "I truly appreciate your prompt assistance with the exchange.",
+        "keywords": [
+          "truly",
+          "appreciate",
+          "prompt",
+          "assistance",
+          "exchange"
+        ]
+      }
+    ],
+    "situation": "You are at an electronics retail shop to exchange a wireless mouse you bought yesterday. The sensor does not track properly on wooden surfaces, and you have the original tax invoice."
+  },
+  {
+    "id": "D6",
+    "title": "Reporting Internet Failure to an ISP Technician",
+    "turns": [
+      {
+        "n": 1,
+        "prompt": "Thank you for calling broadband support. What issue are you experiencing?",
+        "response": "My internet connection stopped working this morning, and the router shows a blinking red indicator.",
+        "keywords": [
+          "internet",
+          "connection",
+          "stopped",
+          "working",
+          "morning",
+          "router",
+          "shows",
+          "blinking",
+          "red",
+          "indicator"
+        ]
+      },
+      {
+        "n": 2,
+        "prompt": "Have you tried restarting the router by switching off the power adapter?",
+        "response": "Yes, I restarted the router twice, but the red light continues to blink.",
+        "keywords": [
+          "yes",
+          "restarted",
+          "router",
+          "twice",
+          "red",
+          "light",
+          "continues",
+          "blink"
+        ]
+      },
+      {
+        "n": 3,
+        "prompt": "Why is this urgent for you today?",
+        "response": "I have an important online semester class scheduled in one hour that I cannot miss.",
+        "keywords": [
+          "important",
+          "online",
+          "semester",
+          "class",
+          "scheduled",
+          "one",
+          "hour",
+          "cannot",
+          "miss"
+        ]
+      },
+      {
+        "n": 4,
+        "prompt": "I have registered a high-priority ticket, and an engineer will arrive within forty minutes.",
+        "response": "Thank you very much for escalating the matter quickly.",
+        "keywords": [
+          "thank",
+          "escalating",
+          "matter",
+          "quickly"
+        ]
+      }
+    ],
+    "situation": "You are speaking on the phone with a broadband service executive because your fiber-optic router shows a blinking red light, and you cannot attend your scheduled online classes."
+  },
+  {
+    "id": "D7",
+    "title": "Ordering at a Restaurant",
+    "turns": [
+      {
+        "n": 1,
+        "prompt": "Good evening! Are you ready to place your food order?",
+        "response": "Good evening, we are ready to place our dinner order now.",
+        "keywords": [
+          "good",
+          "evening",
+          "ready",
+          "place",
+          "dinner",
+          "order",
+          "now"
+        ]
+      },
+      {
+        "n": 2,
+        "prompt": "What would you like to have from our tiffin menu?",
+        "response": "We would like two special ghee roast dosas and one plate of steamed idlis.",
+        "keywords": [
+          "like",
+          "two",
+          "special",
+          "ghee",
+          "roast",
+          "dosas",
+          "one",
+          "plate",
+          "steamed",
+          "idlis"
+        ]
+      },
+      {
+        "n": 3,
+        "prompt": "Do you have any special preferences for the sambar or chutneys?",
+        "response": "Please ensure the sambar is prepared with mild spice because my younger brother is dining with me.",
+        "keywords": [
+          "ensure",
+          "sambar",
+          "prepared",
+          "mild",
+          "spice",
+          "because",
+          "younger",
+          "brother",
+          "dining"
+        ]
+      },
+      {
+        "n": 4,
+        "prompt": "Certainly, your freshly prepared food will be served in ten minutes.",
+        "response": "Thank you, that sounds wonderful.",
+        "keywords": [
+          "thank",
+          "sounds",
+          "wonderful"
+        ]
+      }
+    ],
+    "situation": "You are dining at a South Indian restaurant with your younger brother. You want to order two special ghee dosas, one plate of idli, and less spicy sambar."
+  },
+  {
+    "id": "D8",
+    "title": "Inquiring About an Apartment for Rent",
+    "turns": [
+      {
+        "n": 1,
+        "prompt": "Hello! You called regarding the rental property listing, right?",
+        "response": "Yes, I am calling to inquire about the two-bedroom apartment near the college campus.",
+        "keywords": [
+          "yes",
+          "calling",
+          "inquire",
+          "about",
+          "two",
+          "bedroom",
+          "apartment",
+          "near",
+          "college",
+          "campus"
+        ]
+      },
+      {
+        "n": 2,
+        "prompt": "The monthly rent is twelve thousand rupees. Are you planning to move in with roommates?",
+        "response": "Yes, I plan to share the apartment with two of my college classmates.",
+        "keywords": [
+          "yes",
+          "plan",
+          "share",
+          "apartment",
+          "two",
+          "college",
+          "classmates"
+        ]
+      },
+      {
+        "n": 3,
+        "prompt": "What specific amenities are you most concerned about?",
+        "response": "I would like to know about the monthly maintenance charges and whether there is twenty-four-hour water supply.",
+        "keywords": [
+          "like",
+          "know",
+          "about",
+          "monthly",
+          "maintenance",
+          "charges",
+          "whether",
+          "twenty",
+          "four",
+          "hour",
+          "water",
+          "supply"
+        ]
+      },
+      {
+        "n": 4,
+        "prompt": "Water is round-the-clock, and maintenance is included. Would you like to inspect it tomorrow?",
+        "response": "Yes, I would be happy to visit the property tomorrow afternoon for an inspection.",
+        "keywords": [
+          "yes",
+          "happy",
+          "visit",
+          "property",
+          "tomorrow",
+          "afternoon",
+          "inspection"
+        ]
+      }
+    ],
+    "situation": "You are speaking with a property broker about renting a two-bedroom apartment near your college campus. You ask about the monthly maintenance charges and water supply availability."
+  },
+  {
+    "id": "D9",
+    "title": "Seeking Guidance from a College Librarian",
+    "turns": [
+      {
+        "n": 1,
+        "prompt": "Good morning! Can I help you locate any particular section?",
+        "response": "Good morning, I am looking for reference books on data structures and algorithms.",
+        "keywords": [
+          "good",
+          "morning",
+          "looking",
+          "reference",
+          "books",
+          "data",
+          "structures",
+          "algorithms"
+        ]
+      },
+      {
+        "n": 2,
+        "prompt": "Those are shelved in Section C on the second floor. Do you have your borrower card?",
+        "response": "Yes, I have my student card, but I also need to renew my borrowing membership.",
+        "keywords": [
+          "yes",
+          "student",
+          "card",
+          "need",
+          "renew",
+          "borrowing",
+          "membership"
+        ]
+      },
+      {
+        "n": 3,
+        "prompt": "Membership renewals take two minutes at the counter. How many books do you wish to borrow?",
+        "response": "I intend to issue two reference textbooks for my upcoming semester examinations.",
+        "keywords": [
+          "intend",
+          "issue",
+          "two",
+          "reference",
+          "textbooks",
+          "upcoming",
+          "semester",
+          "examinations"
+        ]
+      },
+      {
+        "n": 4,
+        "prompt": "Here are your books stamped with the two-week return date.",
+        "response": "Thank you very much for your kind assistance.",
+        "keywords": [
+          "thank",
+          "kind",
+          "assistance"
+        ]
+      }
+    ],
+    "situation": "You are in the university central library searching for reference handbooks on data structures and algorithms. You also want to renew your library membership card."
+  },
+  {
+    "id": "D10",
+    "title": "Interacting with a Campus Placement Officer",
+    "turns": [
+      {
+        "n": 1,
+        "prompt": "Come in! Have you brought your finalized resume for the recruitment drive?",
+        "response": "Yes sir, I have brought two printed copies of my updated resume.",
+        "keywords": [
+          "yes",
+          "sir",
+          "brought",
+          "two",
+          "printed",
+          "copies",
+          "updated",
+          "resume"
+        ]
+      },
+      {
+        "n": 2,
+        "prompt": "Have you verified that your aggregate marks and project details are accurate?",
+        "response": "I have double-checked all my semester percentages and included my recent web development project.",
+        "keywords": [
+          "double",
+          "checked",
+          "semester",
+          "percentages",
+          "included",
+          "recent",
+          "web",
+          "development",
+          "project"
+        ]
+      },
+      {
+        "n": 3,
+        "prompt": "Are you open to relocating to other development centers across the country?",
+        "response": "Yes, I am completely flexible and willing to relocate to any designated office location.",
+        "keywords": [
+          "yes",
+          "completely",
+          "flexible",
+          "willing",
+          "relocate",
+          "designated",
+          "office",
+          "location"
+        ]
+      },
+      {
+        "n": 4,
+        "prompt": "Excellent. Please sign the attendance sheet and be ready for tomorrow's written assessment.",
+        "response": "Thank you for the guidance, I will be well prepared for the test.",
+        "keywords": [
+          "thank",
+          "guidance",
+          "well",
+          "prepared",
+          "test"
+        ]
+      }
+    ],
+    "situation": "You are meeting your college placement coordinator to submit your updated resume for an upcoming campus recruitment drive by a multinational software company."
+  },
+  {
+    "id": "D11",
+    "title": "Discussing Scooter Servicing with a Mechanic",
+    "turns": [
+      {
+        "n": 1,
+        "prompt": "Good morning! What services does your vehicle need today?",
+        "response": "Good morning, I brought my scooter for general servicing and an engine oil change.",
+        "keywords": [
+          "good",
+          "morning",
+          "brought",
+          "scooter",
+          "general",
+          "servicing",
+          "engine",
+          "oil",
+          "change"
+        ]
+      },
+      {
+        "n": 2,
+        "prompt": "Are there any specific complaints or strange noises while riding?",
+        "response": "The front brake makes a loud squeaking sound whenever I apply it at low speeds.",
+        "keywords": [
+          "front",
+          "brake",
+          "makes",
+          "loud",
+          "squeaking",
+          "sound",
+          "whenever",
+          "apply",
+          "low",
+          "speeds"
+        ]
+      },
+      {
+        "n": 3,
+        "prompt": "We will inspect the brake pads and clean the drum. When do you need the vehicle back?",
+        "response": "I would prefer to collect the scooter by five o'clock this evening if possible.",
+        "keywords": [
+          "prefer",
+          "collect",
+          "scooter",
+          "five",
+          "o'clock",
+          "evening",
+          "possible"
+        ]
+      },
+      {
+        "n": 4,
+        "prompt": "We will send you a text message once the servicing is completed.",
+        "response": "Thank you, I look forward to your message.",
+        "keywords": [
+          "thank",
+          "look",
+          "forward",
+          "message"
+        ]
+      }
+    ],
+    "situation": "You are leaving your two-wheeler at an authorized service garage for periodic maintenance. You need an engine oil change and request the mechanic to inspect a squeaking front brake."
+  },
+  {
+    "id": "D12",
+    "title": "Inquiring About a Gym Membership",
+    "turns": [
+      {
+        "n": 1,
+        "prompt": "Welcome to IronFit! Are you looking for individual or group workout plans?",
+        "response": "Hello, I am interested in knowing about your annual membership packages for college students.",
+        "keywords": [
+          "hello",
+          "interested",
+          "knowing",
+          "about",
+          "annual",
+          "membership",
+          "packages",
+          "college",
+          "students"
+        ]
+      },
+      {
+        "n": 2,
+        "prompt": "We offer a twenty percent discount for students. What time of day do you plan to train?",
+        "response": "I plan to attend workout sessions in the early morning before my classes start.",
+        "keywords": [
+          "plan",
+          "attend",
+          "workout",
+          "sessions",
+          "early",
+          "morning",
+          "before",
+          "classes",
+          "start"
+        ]
+      },
+      {
+        "n": 3,
+        "prompt": "Would you also like to enroll with a certified personal trainer for the first month?",
+        "response": "Yes, I would appreciate personal training guidance to learn proper weightlifting posture.",
+        "keywords": [
+          "yes",
+          "appreciate",
+          "personal",
+          "training",
+          "guidance",
+          "learn",
+          "proper",
+          "weightlifting",
+          "posture"
+        ]
+      },
+      {
+        "n": 4,
+        "prompt": "You can register today and receive a complimentary fitness assessment.",
+        "response": "That sounds great, please provide me with the enrollment form.",
+        "keywords": [
+          "sounds",
+          "great",
+          "provide",
+          "enrollment",
+          "form"
+        ]
+      }
+    ],
+    "situation": "You are visiting a newly opened fitness club near your hostel to ask about annual student membership packages and the availability of certified personal trainers."
+  },
+  {
+    "id": "D13",
+    "title": "Scheduling a Dental Appointment",
+    "turns": [
+      {
+        "n": 1,
+        "prompt": "Dental Care Clinic, how may I help you today?",
+        "response": "Hello, I would like to schedule an appointment for routine teeth cleaning this Saturday.",
+        "keywords": [
+          "hello",
+          "like",
+          "schedule",
+          "appointment",
+          "routine",
+          "teeth",
+          "cleaning",
+          "saturday"
+        ]
+      },
+      {
+        "n": 2,
+        "prompt": "Doctor Sharma has slots available on Thursday afternoon. Does that work for you?",
+        "response": "Unfortunately, I have mandatory college laboratory sessions on weekdays, so I can only come on Saturday.",
+        "keywords": [
+          "unfortunately",
+          "mandatory",
+          "college",
+          "laboratory",
+          "sessions",
+          "weekdays",
+          "only",
+          "come",
+          "saturday"
+        ]
+      },
+      {
+        "n": 3,
+        "prompt": "We have an open slot at ten-thirty on Saturday morning. Shall I confirm that for you?",
+        "response": "Yes, ten-thirty on Saturday morning suits my schedule perfectly.",
+        "keywords": [
+          "yes",
+          "ten",
+          "thirty",
+          "saturday",
+          "morning",
+          "suits",
+          "schedule",
+          "perfectly"
+        ]
+      },
+      {
+        "n": 4,
+        "prompt": "Your appointment is confirmed. Please arrive ten minutes early with your identity card.",
+        "response": "Thank you very much, I will make sure to arrive on time.",
+        "keywords": [
+          "thank",
+          "make",
+          "sure",
+          "arrive",
+          "time"
+        ]
+      }
+    ],
+    "situation": "You are calling a dental clinic to book a teeth cleaning appointment for Saturday morning. You mention that you are only available on weekends due to weekday college lab hours."
+  },
+  {
+    "id": "D14",
+    "title": "Asking for Help in an Apparel Store",
+    "turns": [
+      {
+        "n": 1,
+        "prompt": "Hello sir! Can I help you find something specific today?",
+        "response": "Hello, I am looking for a formal cotton shirt suitable for campus job interviews.",
+        "keywords": [
+          "hello",
+          "looking",
+          "formal",
+          "cotton",
+          "shirt",
+          "suitable",
+          "campus",
+          "job",
+          "interviews"
+        ]
+      },
+      {
+        "n": 2,
+        "prompt": "What size and color palette do you have in mind?",
+        "response": "I wear size 40 and prefer sober shades such as light blue or plain white.",
+        "keywords": [
+          "wear",
+          "size",
+          "prefer",
+          "sober",
+          "shades",
+          "such",
+          "light",
+          "blue",
+          "plain",
+          "white"
+        ]
+      },
+      {
+        "n": 3,
+        "prompt": "Here are three options from our wrinkle-free collection. Would you like to try them on?",
+        "response": "Yes, could you please point me toward the trial rooms?",
+        "keywords": [
+          "yes",
+          "point",
+          "toward",
+          "trial",
+          "rooms"
+        ]
+      },
+      {
+        "n": 4,
+        "prompt": "The trial rooms are directly on your left. Let me know if you need another size.",
+        "response": "Thank you for your courteous assistance.",
+        "keywords": [
+          "thank",
+          "courteous",
+          "assistance"
+        ]
+      }
+    ],
+    "situation": "You are in a clothing showroom shopping for a light cotton formal shirt for campus interviews. You need size 40 and prefer sober colors like light blue or white."
+  },
+  {
+    "id": "D15",
+    "title": "Booking a Cab for an Early Flight",
+    "turns": [
+      {
+        "n": 1,
+        "prompt": "City Cabs, where would you like to be picked up from?",
+        "response": "I need a pickup from Sunrise Apartments near the stadium tomorrow morning at four-thirty.",
+        "keywords": [
+          "need",
+          "pickup",
+          "sunrise",
+          "apartments",
+          "near",
+          "stadium",
+          "tomorrow",
+          "morning",
+          "four",
+          "thirty"
+        ]
+      },
+      {
+        "n": 2,
+        "prompt": "What is your destination, and how many passengers will be traveling?",
+        "response": "I am traveling alone to the international airport terminal.",
+        "keywords": [
+          "traveling",
+          "alone",
+          "international",
+          "airport",
+          "terminal"
+        ]
+      },
+      {
+        "n": 3,
+        "prompt": "Do you have large luggage that requires a dedicated sedan trunk?",
+        "response": "Yes, I have two large suitcases, so I request a spacious sedan.",
+        "keywords": [
+          "yes",
+          "two",
+          "large",
+          "suitcases",
+          "request",
+          "spacious",
+          "sedan"
+        ]
+      },
+      {
+        "n": 4,
+        "prompt": "Your booking is locked, and driver contact details will be sent via SMS.",
+        "response": "Thank you for confirming, please ensure the driver arrives on time.",
+        "keywords": [
+          "thank",
+          "confirming",
+          "ensure",
+          "driver",
+          "arrives",
+          "time"
+        ]
+      }
+    ],
+    "situation": "You are speaking on the phone with a local taxi dispatch service to book an airport cab for tomorrow morning at four-thirty. You emphasize the need for punctuality due to early flight check-in."
+  },
+  {
+    "id": "D16",
+    "title": "Interacting with an Academic Advisor",
+    "turns": [
+      {
+        "n": 1,
+        "prompt": "Good morning! What academic change would you like to discuss today?",
+        "response": "Good morning professor, I would like to switch my elective course to artificial intelligence.",
+        "keywords": [
+          "good",
+          "morning",
+          "professor",
+          "like",
+          "switch",
+          "elective",
+          "course",
+          "artificial",
+          "intelligence"
+        ]
+      },
+      {
+        "n": 2,
+        "prompt": "Why do you feel artificial intelligence aligns better with your career goals?",
+        "response": "I intend to pursue my final-year project in machine learning, so this elective will give me a strong foundation.",
+        "keywords": [
+          "intend",
+          "pursue",
+          "final",
+          "year",
+          "project",
+          "machine",
+          "learning",
+          "elective",
+          "give",
+          "strong",
+          "foundation"
+        ]
+      },
+      {
+        "n": 3,
+        "prompt": "Have you already cleared the prerequisite courses in linear algebra and python?",
+        "response": "Yes, I have completed both prerequisite subjects with good grades in my previous semesters.",
+        "keywords": [
+          "yes",
+          "completed",
+          "both",
+          "prerequisite",
+          "subjects",
+          "good",
+          "grades",
+          "previous",
+          "semesters"
+        ]
+      },
+      {
+        "n": 4,
+        "prompt": "I will approve your elective swap form in the student management portal.",
+        "response": "Thank you very much for your time and encouragement, professor.",
+        "keywords": [
+          "thank",
+          "time",
+          "encouragement",
+          "professor"
+        ]
+      }
+    ],
+    "situation": "You are meeting your faculty advisor to discuss opting for an elective course in artificial intelligence instead of mobile app development for the upcoming semester."
+  },
+  {
+    "id": "D17",
+    "title": "Requesting an Extension from a Lab In-Charge",
+    "turns": [
+      {
+        "n": 1,
+        "prompt": "The lab record submission deadline was yesterday. Why hasn't your team submitted yet?",
+        "response": "We were unable to submit yesterday because our laboratory sensor kit developed an unexpected fault.",
+        "keywords": [
+          "unable",
+          "submit",
+          "yesterday",
+          "because",
+          "laboratory",
+          "sensor",
+          "kit",
+          "developed",
+          "unexpected",
+          "fault"
+        ]
+      },
+      {
+        "n": 2,
+        "prompt": "Did you report the faulty equipment to the lab technician immediately?",
+        "response": "Yes, we reported the issue, and the technician replaced the sensor late yesterday evening.",
+        "keywords": [
+          "yes",
+          "reported",
+          "issue",
+          "technician",
+          "replaced",
+          "sensor",
+          "late",
+          "yesterday",
+          "evening"
+        ]
+      },
+      {
+        "n": 3,
+        "prompt": "How much additional time do you require to verify the readings and draw graphs?",
+        "response": "We request a two-day extension so we can verify the trial readings and complete the circuit graphs.",
+        "keywords": [
+          "request",
+          "two",
+          "day",
+          "extension",
+          "verify",
+          "trial",
+          "readings",
+          "complete",
+          "circuit",
+          "graphs"
+        ]
+      },
+      {
+        "n": 4,
+        "prompt": "You may submit the finalized observation record this Friday morning.",
+        "response": "Thank you so much professor for your understanding and support.",
+        "keywords": [
+          "thank",
+          "professor",
+          "understanding",
+          "support"
+        ]
+      }
+    ],
+    "situation": "You are speaking with your engineering physics lab professor to request a two-day extension to submit your experimental observations because your hardware kit had a faulty sensor."
+  },
+  {
+    "id": "D18",
+    "title": "Registering at a Public Library",
+    "turns": [
+      {
+        "n": 1,
+        "prompt": "Hello! Are you looking to sign up for a new library card today?",
+        "response": "Yes, I would like to register for a new public library reading card.",
+        "keywords": [
+          "yes",
+          "like",
+          "register",
+          "new",
+          "public",
+          "library",
+          "reading",
+          "card"
+        ]
+      },
+      {
+        "n": 2,
+        "prompt": "Please provide your residential address proof. Do you reside in this municipal ward?",
+        "response": "Yes, I live in this municipal ward, and here is my domestic electricity bill as address proof.",
+        "keywords": [
+          "yes",
+          "live",
+          "municipal",
+          "ward",
+          "here",
+          "domestic",
+          "electricity",
+          "bill",
+          "address",
+          "proof"
+        ]
+      },
+      {
+        "n": 3,
+        "prompt": "Our standard card allows borrowing four physical books. Do you also need digital access?",
+        "response": "Yes, I would like to know if access to digital audiobooks is included in the regular membership.",
+        "keywords": [
+          "yes",
+          "like",
+          "know",
+          "access",
+          "digital",
+          "audiobooks",
+          "included",
+          "regular",
+          "membership"
+        ]
+      },
+      {
+        "n": 4,
+        "prompt": "Yes, your digital login will be active within twenty-four hours. Here is your physical card!",
+        "response": "Thank you so much, I am excited to explore the collection.",
+        "keywords": [
+          "thank",
+          "excited",
+          "explore",
+          "collection"
+        ]
+      }
+    ],
+    "situation": "You are at the registration desk of the town municipal library to apply for a reading card. You want to know if digital audiobooks are included in the regular membership."
+  },
+  {
+    "id": "D19",
+    "title": "Lodging a Complaint at a Courier Office",
+    "turns": [
+      {
+        "n": 1,
+        "prompt": "Good afternoon! How can I assist you with your consignment?",
+        "response": "Good afternoon, I am here to track an express document envelope that has not been delivered on time.",
+        "keywords": [
+          "good",
+          "afternoon",
+          "here",
+          "track",
+          "express",
+          "document",
+          "envelope",
+          "delivered",
+          "time"
+        ]
+      },
+      {
+        "n": 2,
+        "prompt": "Could you please give me the tracking consignment number from your booking receipt?",
+        "response": "Yes, my consignment tracking number is EXP-90452.",
+        "keywords": [
+          "yes",
+          "consignment",
+          "tracking",
+          "number",
+          "exp",
+          "90452"
+        ]
+      },
+      {
+        "n": 3,
+        "prompt": "The portal shows that heavy rainfall caused a highway transit delay. Is the document time-sensitive?",
+        "response": "Yes, it contains university application forms that must reach the admissions office by tomorrow afternoon.",
+        "keywords": [
+          "yes",
+          "contains",
+          "university",
+          "application",
+          "forms",
+          "must",
+          "reach",
+          "admissions",
+          "office",
+          "tomorrow",
+          "afternoon"
+        ]
+      },
+      {
+        "n": 4,
+        "prompt": "I am raising an urgent transit alert to guarantee delivery by tomorrow morning.",
+        "response": "Thank you for your prompt intervention, I really appreciate your help.",
+        "keywords": [
+          "thank",
+          "prompt",
+          "intervention",
+          "really",
+          "appreciate",
+          "help"
+        ]
+      }
+    ],
+    "situation": "You are at a parcel courier office because an urgent document envelope mailed four days ago via express delivery has not reached its destination in Chennai."
+  },
+  {
+    "id": "D20",
+    "title": "Ordering Coffee at a Busy Cafe",
+    "turns": [
+      {
+        "n": 1,
+        "prompt": "Welcome to BrewCraft! What beverage can I craft for you today?",
+        "response": "Hello, I would like to order one large iced caramel latte.",
+        "keywords": [
+          "hello",
+          "like",
+          "order",
+          "one",
+          "large",
+          "iced",
+          "caramel",
+          "latte"
+        ]
+      },
+      {
+        "n": 2,
+        "prompt": "What type of milk would you prefer for your coffee?",
+        "response": "Please prepare my latte using soy milk instead of regular dairy milk.",
+        "keywords": [
+          "prepare",
+          "latte",
+          "using",
+          "soy",
+          "milk",
+          "instead",
+          "regular",
+          "dairy"
+        ]
+      },
+      {
+        "n": 3,
+        "prompt": "Would you like to pair your beverage with any bakery snacks or warm sandwiches?",
+        "response": "Yes, please add a toasted paneer sandwich to my order.",
+        "keywords": [
+          "yes",
+          "add",
+          "toasted",
+          "paneer",
+          "sandwich",
+          "order"
+        ]
+      },
+      {
+        "n": 4,
+        "prompt": "Your total comes to three hundred and twenty rupees. We will call your name when it's ready!",
+        "response": "Thank you very much, here is my debit card for payment.",
+        "keywords": [
+          "thank",
+          "here",
+          "debit",
+          "card",
+          "payment"
+        ]
+      }
+    ],
+    "situation": "You are ordering an iced caramel latte and a toasted paneer sandwich at a coffee shop near your office. You specify that you want soy milk instead of dairy milk."
+  },
+  {
+    "id": "D21",
+    "title": "Purchasing Spectacles at an Optician Store",
+    "turns": [
+      {
+        "n": 1,
+        "prompt": "Good evening! Are you looking to upgrade your eyewear frames today?",
+        "response": "Good evening, I have a new optical prescription and want to purchase a pair of glasses.",
+        "keywords": [
+          "good",
+          "evening",
+          "new",
+          "optical",
+          "prescription",
+          "want",
+          "purchase",
+          "pair",
+          "glasses"
+        ]
+      },
+      {
+        "n": 2,
+        "prompt": "What kind of frame styling and material do you feel most comfortable wearing?",
+        "response": "I prefer lightweight round frames made of flexible titanium material.",
+        "keywords": [
+          "prefer",
+          "lightweight",
+          "round",
+          "frames",
+          "made",
+          "flexible",
+          "titanium",
+          "material"
+        ]
+      },
+      {
+        "n": 3,
+        "prompt": "Since you work long hours at a screen, would you like our anti-glare blue-cut coating?",
+        "response": "Yes, please include the blue-light filtering coating to protect my eyes from computer glare.",
+        "keywords": [
+          "yes",
+          "include",
+          "blue",
+          "light",
+          "filtering",
+          "coating",
+          "protect",
+          "eyes",
+          "computer",
+          "glare"
+        ]
+      },
+      {
+        "n": 4,
+        "prompt": "Your glasses will be assembled and ready for collection on Friday afternoon.",
+        "response": "Thank you so much, I look forward to picking them up on Friday.",
+        "keywords": [
+          "thank",
+          "look",
+          "forward",
+          "picking",
+          "friday"
+        ]
+      }
+    ],
+    "situation": "You are visiting an eyewear store with a fresh prescription from your ophthalmologist. You want lightweight round frames with blue-light filtering lenses for heavy computer usage."
+  },
+  {
+    "id": "D22",
+    "title": "Speaking with a Hostel Warden About Maintenance",
+    "turns": [
+      {
+        "n": 1,
+        "prompt": "Come in! What maintenance issue did you want to bring to my notice?",
+        "response": "Good evening sir, the ceiling fan in room 304 is making an unbearable buzzing noise.",
+        "keywords": [
+          "good",
+          "evening",
+          "sir",
+          "ceiling",
+          "fan",
+          "room",
+          "304",
+          "making",
+          "unbearable",
+          "buzzing",
+          "noise"
+        ]
+      },
+      {
+        "n": 2,
+        "prompt": "Are there any electrical short-circuits or lighting problems in the room as well?",
+        "response": "Yes sir, the tube light above my study desk is flickering constantly and went dark this morning.",
+        "keywords": [
+          "yes",
+          "sir",
+          "tube",
+          "light",
+          "above",
+          "study",
+          "desk",
+          "flickering",
+          "constantly",
+          "went",
+          "dark",
+          "morning"
+        ]
+      },
+      {
+        "n": 3,
+        "prompt": "Has this issue been written down in the hostel maintenance register near the gate?",
+        "response": "Yes, I entered the complaint in the register yesterday, but the electrician has not visited yet.",
+        "keywords": [
+          "yes",
+          "entered",
+          "complaint",
+          "register",
+          "yesterday",
+          "electrician",
+          "visited",
+          "yet"
+        ]
+      },
+      {
+        "n": 4,
+        "prompt": "I will direct the maintenance supervisor to replace the parts before dinner today.",
+        "response": "Thank you very much sir, that will help us study comfortably tonight.",
+        "keywords": [
+          "thank",
+          "sir",
+          "help",
+          "study",
+          "comfortably",
+          "tonight"
+        ]
+      }
+    ],
+    "situation": "You are meeting the campus hostel warden because the ceiling fan in your room on the third floor is making a loud buzzing sound, and the study desk light is not working."
+  },
+  {
+    "id": "D23",
+    "title": "Inquiring About an Intern Fellowship",
+    "turns": [
+      {
+        "n": 1,
+        "prompt": "Hello! Thanks for visiting our company booth. What area of engineering are you pursuing?",
+        "response": "Hello, I am a third-year engineering student specializing in electronics and robotics.",
+        "keywords": [
+          "hello",
+          "third",
+          "year",
+          "engineering",
+          "student",
+          "specializing",
+          "electronics",
+          "robotics"
+        ]
+      },
+      {
+        "n": 2,
+        "prompt": "We have summer internship openings in industrial robotics. What hands-on experience do you have?",
+        "response": "I have designed an autonomous obstacle-avoiding bot using Arduino and sensor modules in my college lab.",
+        "keywords": [
+          "designed",
+          "autonomous",
+          "obstacle",
+          "avoiding",
+          "bot",
+          "using",
+          "arduino",
+          "sensor",
+          "modules",
+          "college",
+          "lab"
+        ]
+      },
+      {
+        "n": 3,
+        "prompt": "That sounds practical. Can you commit to an eight-week on-site internship during the summer?",
+        "response": "Yes, I am fully available to work on-site throughout the eight-week summer vacation period.",
+        "keywords": [
+          "yes",
+          "fully",
+          "available",
+          "work",
+          "site",
+          "throughout",
+          "eight",
+          "week",
+          "summer",
+          "vacation",
+          "period"
+        ]
+      },
+      {
+        "n": 4,
+        "prompt": "Please submit your project portfolio through this QR link, and our HR team will review it.",
+        "response": "Thank you for the opportunity, I will upload my portfolio right away.",
+        "keywords": [
+          "thank",
+          "opportunity",
+          "upload",
+          "portfolio",
+          "right",
+          "away"
+        ]
+      }
+    ],
+    "situation": "You are speaking with an industry recruiter at a campus tech expo about applying for an eight-week summer research internship in robotics and automation."
+  },
+  {
+    "id": "D24",
+    "title": "Reporting a Lost Item at Metro Customer Care",
+    "turns": [
+      {
+        "n": 1,
+        "prompt": "Customer Assistance desk, how can I help you, passenger?",
+        "response": "I accidentally left a black metal water bottle and a spiral notebook inside the train.",
+        "keywords": [
+          "accidentally",
+          "left",
+          "black",
+          "metal",
+          "water",
+          "bottle",
+          "spiral",
+          "notebook",
+          "inside",
+          "train"
+        ]
+      },
+      {
+        "n": 2,
+        "prompt": "Which coach were you traveling in, and what time did you deboard?",
+        "response": "I was seated in the second coach and deboarded at this station about twenty minutes ago.",
+        "keywords": [
+          "seated",
+          "second",
+          "coach",
+          "deboarded",
+          "station",
+          "about",
+          "twenty",
+          "minutes",
+          "ago"
+        ]
+      },
+      {
+        "n": 3,
+        "prompt": "Does the notebook have any identifying markers or your contact details written on it?",
+        "response": "Yes, my name and mobile number are clearly written on the first page of the notebook.",
+        "keywords": [
+          "yes",
+          "name",
+          "mobile",
+          "number",
+          "clearly",
+          "written",
+          "first",
+          "page",
+          "notebook"
+        ]
+      },
+      {
+        "n": 4,
+        "prompt": "The maintenance team has secured the items at the terminus; you can collect them now.",
+        "response": "Thank you so much, I am greatly relieved to hear that.",
+        "keywords": [
+          "thank",
+          "greatly",
+          "relieved",
+          "hear"
+        ]
+      }
+    ],
+    "situation": "You left your black water bottle and a notebook on a metro train that terminated at MG Road station twenty minutes ago. You are reporting the loss at the station controller desk."
+  },
+  {
+    "id": "D25",
+    "title": "Rescheduling a Haircut Appointment",
+    "turns": [
+      {
+        "n": 1,
+        "prompt": "StyleStudio, good afternoon! How can I assist you with your booking?",
+        "response": "Good afternoon, I am calling to reschedule my haircut appointment booked for five o'clock.",
+        "keywords": [
+          "good",
+          "afternoon",
+          "calling",
+          "reschedule",
+          "haircut",
+          "appointment",
+          "booked",
+          "five",
+          "o'clock"
+        ]
+      },
+      {
+        "n": 2,
+        "prompt": "May I know your registered name and the reason for the reschedule?",
+        "response": "My name is Priya, and I am held up in an unexpected college project presentation.",
+        "keywords": [
+          "name",
+          "priya",
+          "held",
+          "unexpected",
+          "college",
+          "project",
+          "presentation"
+        ]
+      },
+      {
+        "n": 3,
+        "prompt": "Our stylist has an opening at seven o'clock this evening. Would that time suit you?",
+        "response": "Yes, seven o'clock this evening works perfectly for me.",
+        "keywords": [
+          "yes",
+          "seven",
+          "o'clock",
+          "evening",
+          "works",
+          "perfectly"
+        ]
+      },
+      {
+        "n": 4,
+        "prompt": "Your booking has been updated for seven o'clock with senior stylist Ramesh.",
+        "response": "Thank you so much for adjusting my appointment at short notice.",
+        "keywords": [
+          "thank",
+          "adjusting",
+          "appointment",
+          "short",
+          "notice"
+        ]
+      }
+    ],
+    "situation": "You are calling your local hair salon to reschedule your five o'clock appointment to seven o'clock this evening because you are stuck in an unscheduled college project review."
+  },
+  {
+    "id": "D26",
+    "title": "Clarifying Project Scope with a Team Partner",
+    "turns": [
+      {
+        "n": 1,
+        "prompt": "Hey! We need to submit our module architecture by tomorrow. How should we split the work?",
+        "response": "I suggest that I handle the database design while you focus on the user interface screens.",
+        "keywords": [
+          "suggest",
+          "handle",
+          "database",
+          "design",
+          "while",
+          "focus",
+          "user",
+          "interface",
+          "screens"
+        ]
+      },
+      {
+        "n": 2,
+        "prompt": "Do you think we can finish creating the PostgreSQL tables by this evening?",
+        "response": "Yes, I have already drafted the initial entity diagrams, so I can build the tables by tonight.",
+        "keywords": [
+          "yes",
+          "already",
+          "drafted",
+          "initial",
+          "entity",
+          "diagrams",
+          "build",
+          "tables",
+          "tonight"
+        ]
+      },
+      {
+        "n": 3,
+        "prompt": "What should we do about connecting the backend APIs before tomorrow's demonstration?",
+        "response": "We can sit together in the computer lab tomorrow morning at nine to integrate the APIs.",
+        "keywords": [
+          "sit",
+          "together",
+          "computer",
+          "lab",
+          "tomorrow",
+          "morning",
+          "nine",
+          "integrate",
+          "apis"
+        ]
+      },
+      {
+        "n": 4,
+        "prompt": "That sounds like a solid plan. Let's finish our parts and compare notes tonight.",
+        "response": "Perfect, I will share my database progress on our group chat before nine.",
+        "keywords": [
+          "perfect",
+          "share",
+          "database",
+          "progress",
+          "group",
+          "chat",
+          "before",
+          "nine"
+        ]
+      }
+    ],
+    "situation": "You are meeting your college capstone project teammate at the canteen to divide tasks for the upcoming progress evaluation. You volunteer to handle the database schema."
+  },
+  {
+    "id": "D27",
+    "title": "Asking for Driving School Information",
+    "turns": [
+      {
+        "n": 1,
+        "prompt": "Good morning! Are you looking to enroll in our four-wheeler driving program?",
+        "response": "Good morning, I would like to inquire about your four-wheeler driving classes and licensing fees.",
+        "keywords": [
+          "good",
+          "morning",
+          "like",
+          "inquire",
+          "about",
+          "four",
+          "wheeler",
+          "driving",
+          "classes",
+          "licensing",
+          "fees"
+        ]
+      },
+      {
+        "n": 2,
+        "prompt": "Our practical course covers twenty hours of on-road driving. What time slots do you prefer?",
+        "response": "I would prefer early morning slots between six and seven so they do not clash with my classes.",
+        "keywords": [
+          "prefer",
+          "early",
+          "morning",
+          "slots",
+          "between",
+          "six",
+          "seven",
+          "clash",
+          "classes"
+        ]
+      },
+      {
+        "n": 3,
+        "prompt": "Do you already possess an active two-wheeler driving license or learner's permit?",
+        "response": "Yes, I hold a valid two-wheeler permanent driving license issued last year.",
+        "keywords": [
+          "yes",
+          "hold",
+          "valid",
+          "two",
+          "wheeler",
+          "permanent",
+          "driving",
+          "license",
+          "issued",
+          "last",
+          "year"
+        ]
+      },
+      {
+        "n": 4,
+        "prompt": "We can begin your road training starting this Monday at six o'clock.",
+        "response": "Thank you, please guide me through the fee payment and enrollment procedure.",
+        "keywords": [
+          "thank",
+          "guide",
+          "through",
+          "fee",
+          "payment",
+          "enrollment",
+          "procedure"
+        ]
+      }
+    ],
+    "situation": "You are visiting an authorized motor driving school to inquire about four-wheeler training classes, license assistance, and the availability of early morning slots."
+  },
+  {
+    "id": "D28",
+    "title": "Inquiring About Bus Timings at a Transit Desk",
+    "turns": [
+      {
+        "n": 1,
+        "prompt": "Enquiry counter, yes please! Which route do you need information on?",
+        "response": "Could you please tell me the departure timings for direct night buses to Tirupati this Friday?",
+        "keywords": [
+          "tell",
+          "departure",
+          "timings",
+          "direct",
+          "night",
+          "buses",
+          "tirupati",
+          "friday"
+        ]
+      },
+      {
+        "n": 2,
+        "prompt": "We have non-stop luxury buses leaving at nine, ten, and eleven-thirty at night. Which do you prefer?",
+        "response": "The ten o'clock night departure suits my schedule best.",
+        "keywords": [
+          "ten",
+          "o'clock",
+          "night",
+          "departure",
+          "suits",
+          "schedule",
+          "best"
+        ]
+      },
+      {
+        "n": 3,
+        "prompt": "Would you like to reserve your seat online now, or will you book through the ticket booth?",
+        "response": "I will book my seat online through your official web portal this afternoon.",
+        "keywords": [
+          "book",
+          "seat",
+          "online",
+          "through",
+          "official",
+          "web",
+          "portal",
+          "afternoon"
+        ]
+      },
+      {
+        "n": 4,
+        "prompt": "Make sure to arrive at platform five thirty minutes before scheduled departure.",
+        "response": "Thank you for the clear information, I appreciate your time.",
+        "keywords": [
+          "thank",
+          "clear",
+          "information",
+          "appreciate",
+          "time"
+        ]
+      }
+    ],
+    "situation": "You are at a state road transport bus enquiry counter asking about direct luxury express buses to Tirupati that operate on Friday night."
+  },
+  {
+    "id": "D29",
+    "title": "Joining a College Sports Club",
+    "turns": [
+      {
+        "n": 1,
+        "prompt": "Good afternoon! Are you here to register for the upcoming inter-collegiate trials?",
+        "response": "Good afternoon sir, I would like to register my name for the college badminton selection trials.",
+        "keywords": [
+          "good",
+          "afternoon",
+          "sir",
+          "like",
+          "register",
+          "name",
+          "college",
+          "badminton",
+          "selection",
+          "trials"
+        ]
+      },
+      {
+        "n": 2,
+        "prompt": "Have you represented your school or district in any official badminton tournaments earlier?",
+        "response": "Yes sir, I represented my district team in the state-level under-nineteen tournament last year.",
+        "keywords": [
+          "yes",
+          "sir",
+          "represented",
+          "district",
+          "team",
+          "state",
+          "level",
+          "under",
+          "nineteen",
+          "tournament",
+          "last",
+          "year"
+        ]
+      },
+      {
+        "n": 3,
+        "prompt": "Selection trials will be conducted on the indoor courts this Saturday at seven in the morning. Can you make it?",
+        "response": "Yes sir, I will report to the indoor courts with my badminton gear promptly by seven.",
+        "keywords": [
+          "yes",
+          "sir",
+          "report",
+          "indoor",
+          "courts",
+          "badminton",
+          "gear",
+          "promptly",
+          "seven"
+        ]
+      },
+      {
+        "n": 4,
+        "prompt": "Please fill out your player profile on this registration sheet and submit your medical clearance.",
+        "response": "Thank you sir, I will complete the form and attach my medical certificate right away.",
+        "keywords": [
+          "thank",
+          "sir",
+          "complete",
+          "form",
+          "attach",
+          "medical",
+          "certificate",
+          "right",
+          "away"
+        ]
+      }
+    ],
+    "situation": "You are at the sports department office meeting the college physical director to register your name for the university badminton selection trials."
+  },
+  {
+    "id": "D30",
+    "title": "Requesting a Correction on an Official Bill",
+    "turns": [
+      {
+        "n": 1,
+        "prompt": "Hello! Is there any discrepancy in your final printed grocery bill?",
+        "response": "Yes, there appears to be an error in the quantity of millet noodles printed on my receipt.",
+        "keywords": [
+          "yes",
+          "appears",
+          "error",
+          "quantity",
+          "millet",
+          "noodles",
+          "printed",
+          "receipt"
+        ]
+      },
+      {
+        "n": 2,
+        "prompt": "Let me review your shopping bag. How many packets did you actually pick up from the shelf?",
+        "response": "I only picked up a single packet from the shelf, but the bill charges me for three.",
+        "keywords": [
+          "only",
+          "picked",
+          "single",
+          "packet",
+          "shelf",
+          "bill",
+          "charges",
+          "three"
+        ]
+      },
+      {
+        "n": 3,
+        "prompt": "I apologize for the oversight made by our billing scanner. Would you like a cash refund or store credit?",
+        "response": "I would prefer a direct refund of the excess amount back to my UPI account.",
+        "keywords": [
+          "prefer",
+          "direct",
+          "refund",
+          "excess",
+          "amount",
+          "back",
+          "upi",
+          "account"
+        ]
+      },
+      {
+        "n": 4,
+        "prompt": "The refund has been credited to your account. I apologize once again for the inconvenience.",
+        "response": "Thank you for addressing the mistake so quickly and politely.",
+        "keywords": [
+          "thank",
+          "addressing",
+          "mistake",
+          "quickly",
+          "politely"
+        ]
+      }
+    ],
+    "situation": "You are at the billing counter of an organic grocery mart because the cashier accidentally billed you for three packs of millet noodles instead of the single pack you took."
+  }
+]
