@@ -69,6 +69,8 @@ export default function ListeningSessionPage() {
     error: micError,
     confidence,
     timing,
+    recordedAudioUrl,
+    getTranscript,
     startListening,
     stopListening,
     resetTranscript
@@ -80,6 +82,13 @@ export default function ListeningSessionPage() {
       playMicStopBeep();
     }
   });
+
+  // Automatically keep typedAnswer synchronized with live speech recognition
+  useEffect(() => {
+    if (combinedTranscript) {
+      setTypedAnswer(combinedTranscript);
+    }
+  }, [combinedTranscript]);
 
   // Stop all audio on unmount or route change
   useEffect(() => {
@@ -111,7 +120,7 @@ export default function ListeningSessionPage() {
     } else {
       speak(set.passage, { 
         rate, 
-        trackReplay: true,
+        trackReplay: true, 
         onEnd: () => {} 
       });
     }
@@ -157,11 +166,11 @@ export default function ListeningSessionPage() {
 
   // Evaluate current question answer
   const handleEvaluate = (manualText = null) => {
-    stopListening();
+    const finalSpeech = stopListening() || getTranscript() || combinedTranscript;
     stopTTS();
 
-    const fullSpeech = combinedTranscript || [transcript, interimTranscript].filter(Boolean).join(' ').trim();
-    const answerText = manualText !== null ? manualText : fullSpeech;
+    const candidate = manualText !== null ? manualText : (typedAnswer || finalSpeech);
+    const answerText = (candidate || '').trim();
 
     // Calculate score using the JSON-driven rubric engine
     const evaluation = scoreListeningAnswer({
@@ -465,86 +474,118 @@ export default function ListeningSessionPage() {
             </div>
           </div>
 
-          {/* Microphone status / Live transcript screen */}
+          {/* Answer Card: Live Speech-to-Text & Editable Answer */}
           <div 
             className={isListening ? 'recording-border-active' : ''}
             style={{
-              minHeight: '140px',
               padding: '1.25rem',
               borderRadius: 'var(--radius-md)',
               background: 'var(--bg-secondary)',
-              border: `2px solid ${isListening ? '#EF4444' : (isPauseDetected ? 'var(--success)' : 'var(--border-subtle)')}`,
+              border: `2px solid ${isListening ? '#EF4444' : (typedAnswer.trim() ? 'var(--success)' : 'var(--border-subtle)')}`,
               marginBottom: '1.5rem',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
               transition: 'all var(--transition-fast)'
             }}
           >
-            <div>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.65rem', flexWrap: 'wrap', gap: '0.5rem' }}>
-                {isListening ? (
-                  <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.55rem', background: 'rgba(239, 68, 68, 0.12)', border: '1px solid rgba(239, 68, 68, 0.3)', padding: '0.3rem 0.75rem', borderRadius: 'var(--radius-full)' }}>
-                    <span className="recording-blink-dot" />
-                    <span style={{ fontSize: '0.78rem', fontWeight: 800, color: '#EF4444', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
-                      Recording Audio... Speak Now
-                    </span>
-                  </div>
-                ) : isPauseDetected || (transcript && !isListening) ? (
-                  <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem', background: 'rgba(34, 197, 94, 0.12)', border: '1px solid rgba(34, 197, 94, 0.3)', padding: '0.3rem 0.75rem', borderRadius: 'var(--radius-full)', color: 'var(--success)' }}>
-                    <CheckCircle2 size={15} />
-                    <span style={{ fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.03em', textTransform: 'uppercase' }}>
-                      Answer Recorded (Ready to evaluate)
-                    </span>
-                  </div>
-                ) : (
-                  <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', color: 'var(--text-muted)' }}>
-                    Your Spoken Answer:
+            {/* Header Status */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+              {isListening ? (
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.55rem', background: 'rgba(239, 68, 68, 0.12)', border: '1px solid rgba(239, 68, 68, 0.3)', padding: '0.3rem 0.75rem', borderRadius: 'var(--radius-full)' }}>
+                  <span className="recording-blink-dot" />
+                  <span style={{ fontSize: '0.78rem', fontWeight: 800, color: '#EF4444', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+                    Recording & Transcribing... Speak Now
                   </span>
-                )}
-
-                {isListening && (
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <span style={{ fontSize: '0.7rem', color: audioLevel > 8 ? 'var(--success)' : 'var(--text-muted)', fontWeight: 600 }}>
-                      {audioLevel > 8 ? 'Voice Detected' : 'Auto-Gain Active'}
-                    </span>
-                    <div className="waveform-container" style={{ height: '18px' }}>
-                      {[0.5, 0.9, 1.3, 0.9, 0.5].map((scale, idx) => (
-                        <div
-                          key={idx}
-                          className="wave-bar"
-                          style={{
-                            height: `${Math.max(4, Math.min(18, (audioLevel / 100) * 18 * scale))}px`,
-                            background: audioLevel > 10 ? 'var(--accent-cyan)' : 'var(--primary)',
-                            transition: 'height 0.08s ease'
-                          }}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              <div style={{ fontSize: '1.15rem', color: 'var(--text-primary)', wordBreak: 'break-word', fontWeight: 500 }}>
-                {transcript || (
-                  <span style={{ color: isListening ? 'var(--primary)' : 'var(--text-muted)', fontStyle: 'italic' }}>
-                    {interimTranscript ? interimTranscript : (isListening ? 'Listening for speech...' : 'Press Start Mic to speak, or type your answer.')}
+                </div>
+              ) : typedAnswer.trim() ? (
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem', background: 'rgba(34, 197, 94, 0.12)', border: '1px solid rgba(34, 197, 94, 0.3)', padding: '0.3rem 0.75rem', borderRadius: 'var(--radius-full)', color: 'var(--success)' }}>
+                  <CheckCircle2 size={15} />
+                  <span style={{ fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.03em', textTransform: 'uppercase' }}>
+                    Answer Captured (Ready to evaluate)
                   </span>
-                )}
-                {interimTranscript && transcript && (
-                  <span style={{ color: 'var(--primary)', opacity: 0.8 }}> {interimTranscript}</span>
-                )}
-              </div>
+                </div>
+              ) : (
+                <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', color: 'var(--text-muted)' }}>
+                  Your Spoken Answer:
+                </span>
+              )}
+
+              {isListening && (
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span style={{ fontSize: '0.7rem', color: audioLevel > 8 ? 'var(--success)' : 'var(--text-muted)', fontWeight: 600 }}>
+                    {audioLevel > 8 ? 'Voice Detected' : 'Listening...'}
+                  </span>
+                  <div className="waveform-container" style={{ height: '18px' }}>
+                    {[0.5, 0.9, 1.3, 0.9, 0.5].map((scale, idx) => (
+                      <div
+                        key={idx}
+                        className="wave-bar"
+                        style={{
+                          height: `${Math.max(4, Math.min(18, (audioLevel / 100) * 18 * scale))}px`,
+                          background: audioLevel > 10 ? 'var(--accent-cyan)' : 'var(--primary)',
+                          transition: 'height 0.08s ease'
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
-            {confidence !== null && (
-              <div style={{ alignSelf: 'flex-end', fontSize: '0.75rem', color: 'var(--success)', fontWeight: 600 }}>
-                Clarity Confidence: {Math.round(confidence * 100)}%
+            {/* Editable Text Area synced with speech recognition in real-time */}
+            <div style={{ position: 'relative', marginBottom: '0.5rem' }}>
+              <textarea
+                value={typedAnswer}
+                onChange={(e) => setTypedAnswer(e.target.value)}
+                placeholder={isListening ? "Listening for speech... Your words will convert to text here automatically." : "Speak into your microphone or type your answer here..."}
+                rows={3}
+                style={{
+                  width: '100%',
+                  padding: '0.75rem 1rem',
+                  borderRadius: 'var(--radius-sm)',
+                  background: 'var(--bg-card)',
+                  border: '1px solid var(--border-subtle)',
+                  color: 'var(--text-primary)',
+                  fontSize: '1.05rem',
+                  lineHeight: '1.5',
+                  outline: 'none',
+                  resize: 'vertical',
+                  fontFamily: 'inherit'
+                }}
+              />
+            </div>
+
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem', fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+              <span>
+                {isListening ? '✨ Words transcribe into text automatically. You can also edit or type.' : 'Click "Evaluate Answer" when ready, or click Re-record to try again.'}
+              </span>
+              {confidence !== null && (
+                <span style={{ color: 'var(--success)', fontWeight: 600 }}>
+                  Speech Clarity: {Math.round(confidence * 100)}%
+                </span>
+              )}
+            </div>
+
+            {/* Recorded Audio Player if available */}
+            {recordedAudioUrl && !isListening && (
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.75rem',
+                marginTop: '0.75rem',
+                padding: '0.5rem 0.75rem',
+                borderRadius: 'var(--radius-sm)',
+                background: 'var(--bg-card)',
+                border: '1px solid var(--border-subtle)'
+              }}>
+                <Headphones size={16} color="var(--primary)" />
+                <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text-secondary)' }}>
+                  Your Recorded Audio:
+                </span>
+                <audio controls src={recordedAudioUrl} style={{ height: '30px', flex: 1, outline: 'none' }} />
               </div>
             )}
           </div>
 
-          {/* Mic error notice */}
+          {/* Mic error notice if any */}
           {micError && (
             <div style={{
               display: 'flex',
@@ -562,60 +603,11 @@ export default function ListeningSessionPage() {
             </div>
           )}
 
-          {/* Typing fallback toggle */}
-          {showTypingFallback ? (
-            <div style={{ marginBottom: '1.5rem' }}>
-              <label style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', display: 'block', marginBottom: '0.4rem' }}>
-                Type your answer (Keyboard fallback):
-              </label>
-              <div style={{ display: 'flex', gap: '0.5rem' }}>
-                <input
-                  type="text"
-                  placeholder="Type your answer here..."
-                  value={typedAnswer}
-                  onChange={(e) => setTypedAnswer(e.target.value)}
-                  onKeyDown={(e) => { if (e.key === 'Enter') handleEvaluate(typedAnswer); }}
-                  style={{
-                    flex: 1,
-                    height: '48px',
-                    padding: '0 1rem',
-                    borderRadius: 'var(--radius-md)',
-                    background: 'var(--bg-secondary)',
-                    border: '1px solid var(--border-subtle)',
-                    color: 'var(--text-primary)',
-                    fontSize: '1rem'
-                  }}
-                />
-                <button
-                  onClick={() => handleEvaluate(typedAnswer)}
-                  disabled={!typedAnswer.trim()}
-                  className="btn btn-primary"
-                  style={{ minHeight: '48px' }}
-                >
-                  Submit
-                </button>
-              </div>
-            </div>
-          ) : (
-            <div style={{ textAlign: 'right', marginBottom: '1.25rem' }}>
-              <button
-                type="button"
-                onClick={() => {
-                  stopListening();
-                  setShowTypingFallback(true);
-                }}
-                style={{ fontSize: '0.85rem', color: 'var(--primary)', textDecoration: 'underline' }}
-              >
-                Microphone having issues? Type answer instead
-              </button>
-            </div>
-          )}
-
-          {/* Action buttons - Start Mic removed; replaced with automatic beep + Evaluate, Re-record, Skip */}
+          {/* Action buttons: Evaluate, Re-record, Skip */}
           <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
             <button
               onClick={() => handleEvaluate()}
-              disabled={!transcript && !interimTranscript}
+              disabled={!typedAnswer.trim() && !combinedTranscript}
               className="btn btn-primary"
               style={{ flex: 2, minHeight: '52px', fontSize: '1.05rem', fontWeight: 700 }}
             >

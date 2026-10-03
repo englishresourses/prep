@@ -39,7 +39,8 @@ export default function SpeechTestPage() {
     startListening,
     stopListening,
     resetTranscript,
-    confidence
+    confidence,
+    recordedAudioUrl
   } = useSpeechRecognition({ defaultLang: 'en-US' });
 
   const [testText, setTestText] = useState(
@@ -136,6 +137,26 @@ export default function SpeechTestPage() {
                     }}
                   />
                 </div>
+              </div>
+            )}
+
+            {/* Audio Recording Playback if available */}
+            {recordedAudioUrl && !isListening && (
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.75rem',
+                marginBottom: '1rem',
+                padding: '0.65rem 0.85rem',
+                borderRadius: 'var(--radius-md)',
+                background: 'var(--bg-secondary)',
+                border: '1px solid var(--border-subtle)'
+              }}>
+                <Volume2 size={18} color="var(--primary)" />
+                <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text-secondary)' }}>
+                  Recorded Audio:
+                </span>
+                <audio controls src={recordedAudioUrl} style={{ height: '30px', flex: 1 }} />
               </div>
             )}
 
