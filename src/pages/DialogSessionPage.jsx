@@ -530,27 +530,55 @@ export default function DialogSessionPage() {
               transition: 'all var(--transition-fast)'
             }}
           >
-            {/* Header Status */}
+            {/* Header Status & Direct Mic Toggle Button */}
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem', flexWrap: 'wrap', gap: '0.5rem' }}>
-              {isListening ? (
-                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.55rem', background: 'rgba(239, 68, 68, 0.12)', border: '1px solid rgba(239, 68, 68, 0.3)', padding: '0.3rem 0.75rem', borderRadius: 'var(--radius-full)' }}>
-                  <span className="recording-blink-dot" />
-                  <span style={{ fontSize: '0.78rem', fontWeight: 800, color: '#EF4444', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
-                    Recording & Transcribing... Speak Now
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (isListening) {
+                      playMicStopBeep();
+                      stopListening();
+                    } else {
+                      playMicStartBeep();
+                      startListening();
+                    }
+                  }}
+                  className={`btn ${isListening ? 'btn-danger' : 'btn-primary'}`}
+                  style={{
+                    padding: '0.35rem 0.85rem',
+                    fontSize: '0.82rem',
+                    fontWeight: 700,
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.45rem',
+                    borderRadius: 'var(--radius-full)'
+                  }}
+                >
+                  {isListening ? <MicOff size={15} /> : <Mic size={15} />}
+                  <span>{isListening ? 'Stop Speaking' : 'Tap to Speak'}</span>
+                </button>
+
+                {isListening ? (
+                  <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem', background: 'rgba(239, 68, 68, 0.12)', border: '1px solid rgba(239, 68, 68, 0.3)', padding: '0.25rem 0.65rem', borderRadius: 'var(--radius-full)' }}>
+                    <span className="recording-blink-dot" />
+                    <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#EF4444', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+                      Listening... Speak Now
+                    </span>
+                  </div>
+                ) : typedAnswer.trim() ? (
+                  <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', background: 'rgba(34, 197, 94, 0.12)', border: '1px solid rgba(34, 197, 94, 0.3)', padding: '0.25rem 0.65rem', borderRadius: 'var(--radius-full)', color: 'var(--success)' }}>
+                    <CheckCircle2 size={14} />
+                    <span style={{ fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.03em', textTransform: 'uppercase' }}>
+                      Response Captured
+                    </span>
+                  </div>
+                ) : (
+                  <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', color: 'var(--text-muted)' }}>
+                    Your Spoken Response:
                   </span>
-                </div>
-              ) : typedAnswer.trim() ? (
-                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem', background: 'rgba(34, 197, 94, 0.12)', border: '1px solid rgba(34, 197, 94, 0.3)', padding: '0.3rem 0.75rem', borderRadius: 'var(--radius-full)', color: 'var(--success)' }}>
-                  <CheckCircle2 size={15} />
-                  <span style={{ fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.03em', textTransform: 'uppercase' }}>
-                    Response Captured (Ready to evaluate)
-                  </span>
-                </div>
-              ) : (
-                <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', color: 'var(--text-muted)' }}>
-                  Your Spoken Response:
-                </span>
-              )}
+                )}
+              </div>
 
               {isListening && (
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
@@ -579,7 +607,7 @@ export default function DialogSessionPage() {
               <textarea
                 value={typedAnswer}
                 onChange={(e) => setTypedAnswer(e.target.value)}
-                placeholder={isListening ? "Listening for speech... Your words will convert to text here automatically." : "Speak into your microphone or type your response here..."}
+                placeholder={isListening ? "Listening for speech... Your words will convert to text here automatically." : "Tap 'Tap to Speak' above or type your response here..."}
                 rows={3}
                 style={{
                   width: '100%',
@@ -599,13 +627,18 @@ export default function DialogSessionPage() {
 
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem', fontSize: '0.78rem', color: 'var(--text-muted)' }}>
               <span>
-                {isListening ? '✨ Words transcribe into text automatically. You can also edit or type.' : 'Click "Evaluate Turn" when ready, or click Re-record to try again.'}
+                {isListening ? '✨ Words transcribe into text automatically. You can also edit or type.' : 'Click "Evaluate Turn" when ready, or tap "Tap to Speak" to record again.'}
               </span>
               {confidence !== null && (
                 <span style={{ color: 'var(--success)', fontWeight: 600 }}>
                   Speech Clarity: {Math.round(confidence * 100)}%
                 </span>
               )}
+            </div>
+
+            <div style={{ fontSize: '0.74rem', color: 'var(--text-muted)', marginTop: '0.4rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+              <span>📱</span>
+              <span>On mobile? Tap <strong>Tap to Speak</strong> or tap the microphone icon on your mobile keyboard (Gboard/iOS) to dictate.</span>
             </div>
 
             {/* Recorded Audio Player if available */}

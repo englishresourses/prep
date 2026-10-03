@@ -1,5 +1,15 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 
+/**
+ * Detects whether the current device is a mobile browser (Android, iOS, iPadOS).
+ * Mobile OSes enforce strict single-client microphone hardware access.
+ */
+export function isMobileBrowser() {
+  if (typeof window === 'undefined' || typeof navigator === 'undefined') return false;
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+    (Boolean(navigator.maxTouchPoints) && navigator.maxTouchPoints > 1 && !/Windows|Macintosh/i.test(navigator.userAgent));
+}
+
 export function useSpeechRecognition(options = {}) {
   const [isListening, setIsListening] = useState(false);
   const [transcript, setTranscript] = useState('');
@@ -61,16 +71,23 @@ export function useSpeechRecognition(options = {}) {
 
   // Setup lightweight volume analyser via Web Audio without exclusive hardware DSP locks
   const startAudioMonitoring = useCallback(async () => {
+    // CRITICAL MOBILE FIX:
+    // On Android and iOS, the mobile OS only allows ONE active microphone capture client per app.
+    // If getUserMedia opens the microphone on mobile, webkitSpeechRecognition is starved and fails to convert voice to text!
+    // Therefore on mobile, we completely bypass getUserMedia so SpeechRecognition has exclusive, uninterrupted hardware mic access.
+    if (isMobileBrowser()) {
+      return;
+    }
+
     try {
       if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) return;
 
-      // Use standard audio constraints so WASAPI / Chrome SpeechRecognition capture is NOT starved or hijacked
       const stream = await navigator.mediaDevices.getUserMedia({
         audio: true
       });
       streamRef.current = stream;
 
-      // Also set up MediaRecorder to capture the physical audio of the user's speech
+      // On desktop, also record audio if supported
       try {
         const mimeTypes = [
           'audio/webm;codecs=opus',
@@ -103,7 +120,7 @@ export function useSpeechRecognition(options = {}) {
         };
 
         mediaRecorderRef.current = recorder;
-        recorder.start(250); // Slice every 250ms
+        recorder.start(250);
       } catch (recErr) {
         console.warn('MediaRecorder setup skipped:', recErr);
       }
@@ -129,7 +146,6 @@ export function useSpeechRecognition(options = {}) {
             sum += dataArray[i];
           }
           const avg = sum / dataArray.length;
-          // Scale non-linearly with high sensitivity for quiet/normal speaking voices
           const scaled = Math.min(100, Math.round((avg / 28) * 100));
           setAudioLevel(scaled);
 
@@ -258,17 +274,19 @@ export function useSpeechRecognition(options = {}) {
     setIsPauseDetected(false);
     setIsSpeakingDetected(false);
 
-    // Start audio monitoring and recording
+    // Start audio monitoring (only on desktop where supported)
     startAudioMonitoring();
 
     const selectedLang = customLang || lang || 'en-US';
+    const isMobile = isMobileBrowser();
 
     try {
       const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
       const recognition = new SpeechRec();
       recognitionRef.current = recognition;
 
-      recognition.continuous = true;
+      // On Android Chrome, continuous = true often fails or drops connection; single-shot intent with chained onend works reliably!
+      recognition.continuous = !isMobile;
       recognition.interimResults = true;
       recognition.lang = selectedLang;
       recognition.maxAlternatives = 1;
@@ -281,14 +299,23 @@ export function useSpeechRecognition(options = {}) {
         setError(null);
         setErrorCode(null);
         setTiming(prev => ({ ...prev, micStartTime: startTime }));
+        if (isMobile) {
+          setAudioLevel(35);
+        }
       };
 
       recognition.onspeechstart = () => {
         setIsSpeakingDetected(true);
+        if (isMobile) {
+          setAudioLevel(75);
+        }
       };
 
       recognition.onspeechend = () => {
         setIsSpeakingDetected(false);
+        if (isMobile) {
+          setAudioLevel(20);
+        }
       };
 
       recognition.onresult = (event) => {
@@ -337,6 +364,10 @@ export function useSpeechRecognition(options = {}) {
         }
         setInterimTranscript(interimTrans);
 
+        if (isMobile) {
+          setAudioLevel(85);
+        }
+
         // Smart silence / pause detection:
         // Once the user has spoken, start a countdown timer.
         // If no new speech is heard for `pauseTimeoutMs` (e.g. 1.8s), auto-stop listening.
@@ -381,18 +412,17 @@ export function useSpeechRecognition(options = {}) {
         setErrorCode(event.error);
 
         if (event.error === 'not-allowed') {
-          setError('Microphone access was denied. Please allow microphone permissions in your browser address bar.');
+          setError('Microphone access was denied. Please allow microphone permissions in your mobile browser address bar.');
           shouldBeListeningRef.current = false;
           setIsListening(false);
           stopAudioMonitoring();
         } else if (event.error === 'audio-capture') {
-          setError('Microphone hardware error. Please check if your microphone is connected and working.');
+          setError('Microphone hardware error. Please check your device microphone.');
           shouldBeListeningRef.current = false;
           setIsListening(false);
           stopAudioMonitoring();
         } else if (event.error === 'network') {
-          setError('Browser speech service network issue. You can speak again or type your answer directly in the box below.');
-          // Don't kill listening immediately on network hiccups; attempt graceful restart if still active
+          setError('Speech service network issue. You can speak again, or tap the microphone icon on your mobile keyboard to dictate.');
           if (shouldBeListeningRef.current) {
             setTimeout(() => {
               if (shouldBeListeningRef.current && recognitionRef.current) {
@@ -401,7 +431,7 @@ export function useSpeechRecognition(options = {}) {
             }, 600);
           }
         } else {
-          setError(`Speech recognition notice: ${event.error}. You can also type your answer below.`);
+          setError(`Speech recognition notice: ${event.error}. You can also dictate with your mobile keyboard.`);
         }
       };
 
@@ -415,7 +445,7 @@ export function useSpeechRecognition(options = {}) {
           return;
         }
 
-        // Otherwise if user hasn't spoken yet and didn't cancel, keep microphone open
+        // If on mobile or still listening and user hasn't paused/cancelled, keep microphone open
         if (shouldBeListeningRef.current) {
           if (currentSessionFinalRef.current) {
             accumulatedFinalRef.current = [accumulatedFinalRef.current, currentSessionFinalRef.current].filter(Boolean).join(' ').trim();
@@ -436,7 +466,7 @@ export function useSpeechRecognition(options = {}) {
       recognition.start();
     } catch (err) {
       console.error('Failed to start speech recognition:', err);
-      setError('Unable to start microphone speech engine. Please check permissions or type your answer.');
+      setError('Unable to start microphone speech engine. Please tap Start Microphone or use keyboard dictation.');
       setErrorCode('start-failure');
       setIsListening(false);
       stopAudioMonitoring();
@@ -463,6 +493,7 @@ export function useSpeechRecognition(options = {}) {
   return {
     isSupported: isSpeechRecSupported,
     isListening,
+    isMobile: isMobileBrowser(),
     transcript,
     setTranscript,
     interimTranscript,
